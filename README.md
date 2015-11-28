@@ -1,28 +1,107 @@
-== README
+##App Title Pending
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App description
 
-Things you may want to cover:
+## API
 
-* Ruby version
+**Authentication Notes**:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Authentication not yet implemented
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+#####################################################
+
+
+### Displaying an Index of Tours
+
+#### GET `/tours`
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "tours": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "title": "Historical Views",
+      "length": "4 hours"
+    },
+
+    ...
+  ]
+}
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "Could not find object: Couldn't find Tour with 'id'='all'"
+}
+```
+
+### Displaying a Single Tour
+
+#### GET `/tours/:id`
+
+**Query Params:**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "tour": {
+    "id": 1,
+    "user_id": 2,
+    "title": "Historical Views",
+    "length": "4 hours"
+  }
+}
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "Could not find object: Couldn't find Tour with 'id'=#{id}"
+}
+```
+
+### Creating a New Tour
+
+#### POST `/tours`
+
+**Post Params:**
+
+`title`: String
+`length`: String
+
+**Response**
+
+If the request was successful, you should receive the status code 201 and ...
+
+```
+{
+  "tour": {
+    "id": 1,
+    "user_id": 2,
+    "title": "Historical Views",
+    "length": "4 hours"
+  }
+}
+```
+
+If the request failed, you should receive the status code 422 and ...
+
+```
+{
+  error: "The tour could not be created."
+}
+```
