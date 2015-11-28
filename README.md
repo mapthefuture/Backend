@@ -8,8 +8,7 @@ App description
 
 Authentication not yet implemented
 
-
-#####################################################
+-------------------------------------------------
 
 
 ### Displaying an Index of Tours
