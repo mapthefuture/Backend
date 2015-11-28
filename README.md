@@ -80,6 +80,7 @@ If the request failed, you should receive the status code 404 and ...
 **Post Params:**
 
 `title`: String
+
 `length`: String
 
 **Response**
