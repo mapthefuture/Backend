@@ -4,7 +4,7 @@ A crowdsourced touring app that offers new, fresh perspectives on the city to lo
 
 ## API
 
-**Production base uri**: https://fathomless-savannah-6575.herokuapp.com
+**Production Base URI**: https://fathomless-savannah-6575.herokuapp.com
 
 Append endpoints to base uri.
 
