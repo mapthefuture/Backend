@@ -3,25 +3,25 @@ class ToursController < ApplicationController
   def index
     @tours = Tour.all
     if @tours
-      render "index.json.jbuilder", status: :ok
+      render "index.json.jbuilder", status: :ok # status 200
     end
   end
 
   def create
     @tour = Tour.new(tour_params)
     if @tour.save
-      render "create.json.jbuilder"
+      render "create.json.jbuilder", status: :created # status 201
     else
       render json: { error: "The tour could not be created."},
         status: :unprocessable_entity
-        # status: 422
+        # status 422
     end
   end
 
   def show
     @tour = Tour.find(params[:id])
     if @tour
-      render "show.json.jbuilder", status: :ok
+      render "show.json.jbuilder", status: :ok # status 200
     end
   end
 
