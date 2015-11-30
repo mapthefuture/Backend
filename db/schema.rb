@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20151130165814) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float    "distance"
-    t.string   "duration"
+    t.integer  "duration"
   end
 
   create_table "users", force: :cascade do |t|
