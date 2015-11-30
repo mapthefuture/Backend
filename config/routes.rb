@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   #     end
   #   end
 
+  ## Registration Routes
+  post "signup", to: "registrations#create"
+  post "user/show", to: "registrations#show"
+  patch "user/update", to: "registrations#update"
+  delete "user/destroy", to: "registrations#destroy"
+
   ## Tour Routes
   get "tours", to: "tours#index"
   post "tours", to: "tours#create"
