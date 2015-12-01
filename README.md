@@ -163,12 +163,17 @@ If the request was successful, you should receive the status code 200 and ...
 ```
 {
   "tours": [
-    {
-      "id": 1,
-      "user_id": 2,
-      "title": "Historical Views",
-      "length": "4 hours"
-    },
+    "tour": {
+    "id": 7,
+    "user_id": 4,
+    "title": "Charleston Gardens",
+    "distance": 3,
+    "duration": 2,
+    "start_lat": "33.8428",
+    "start_lon": "84.3857",
+    "category": "Food",
+    "description": "Lots of topiaries."
+  },
 
     ...
   ]
@@ -179,7 +184,7 @@ If the request failed, you should receive the status code 404 and ...
 
 ```
 {
-  "error": "Could not find object: Couldn't find Tour with 'id'='all'"
+  "error": "There are no tours to display."
 }
 ```
 
@@ -187,7 +192,7 @@ If the request failed, you should receive the status code 404 and ...
 
 #### GET `/tours/:id`
 
-**Query Params:**
+**Query Params**:
 
 `id`: Integer
 
@@ -198,10 +203,15 @@ If the request was successful, you should receive the status code 200 and ...
 ```
 {
   "tour": {
-    "id": 1,
-    "user_id": 2,
-    "title": "Historical Views",
-    "length": "4 hours"
+    "id": 7,
+    "user_id": 4,
+    "title": "Charleston Gardens",
+    "distance": 3,
+    "duration": 2,
+    "start_lat": "33.8428",
+    "start_lon": "84.3857",
+    "category": "Food",
+    "description": "Lots of topiaries."
   }
 }
 ```
@@ -218,11 +228,21 @@ If the request failed, you should receive the status code 404 and ...
 
 #### POST `/tours`
 
-**Post Params:**
+**Post Params**:
 
 `title`: String
 
-`length`: String
+`distance`: Float (in miles)
+
+`duration`: Integer (in hours)
+
+`start_lat`: Decimal (precision: 10, scope: 8)
+
+`start_lon`: Decimal (precision: 10, scope: 8)
+
+`category`: String
+
+`description`: Text
 
 **Response**
 
@@ -231,10 +251,15 @@ If the request was successful, you should receive the status code 201 and ...
 ```
 {
   "tour": {
-    "id": 1,
-    "user_id": 2,
-    "title": "Historical Views",
-    "length": "4 hours"
+    "id": 7,
+    "user_id": 4,
+    "title": "Charleston Gardens",
+    "distance": 3,
+    "duration": 2,
+    "start_lat": "33.8428",
+    "start_lon": "84.3857",
+    "category": "Food",
+    "description": "Lots of topiaries."
   }
 }
 ```
@@ -245,4 +270,78 @@ If the request failed, you should receive the status code 422 and ...
 {
   error: "The tour could not be created."
 }
+```
+
+### Updating an Existing Tour
+
+#### PATCH `/tours/:id`
+
+**Query Params**:
+
+`id`: Integer
+
+**Post Params**:
+
+`title`: String
+
+`distance`: Float (in miles)
+
+`duration`: Integer (in hours)
+
+`start_lat`: Decimal (precision: 10, scope: 8)
+
+`start_lon`: Decimal (precision: 10, scope: 8)
+
+`category`: String
+
+`description`: Text
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+{
+  "tour": {
+    "id": 7,
+    "user_id": 4,
+    "title": "Charleston Gardens",
+    "distance": 3,
+    "duration": 2,
+    "start_lat": "33.8428",
+    "start_lon": "84.3857",
+    "category": "Food",
+    "description": "Lots of topiaries."
+  }
+}
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+{
+  error: "You are not authorized to update this tour."
+}
+```
+
+### Deleting an Exisiting Tour
+
+#### DELETE `/tours/:id`
+
+**Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+"The tour has been deleted successfully."
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+"error": "You are not authorized to delete this tour."
 ```
