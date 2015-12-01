@@ -28,6 +28,6 @@ class ToursController < ApplicationController
   private
 
   def tour_params
-    params.permit(:title, :length, :user_id) # user_id needs to be removed when authentication has been implemented
+    params.permit(:title, :distance, :duration, :start_lat, :start_lon, :category, :description, :user_id) # user_id needs to be removed when authentication has been implemented
   end
 end
