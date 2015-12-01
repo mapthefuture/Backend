@@ -11,49 +11,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130204110) do
+ActiveRecord::Schema.define(version: 20151201155131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "sites", force: :cascade do |t|
-    t.string   "title"
-    t.decimal  "lat",        precision: 10, scale: 8
-    t.decimal  "lon",        precision: 10, scale: 8
-    t.integer  "tour_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+  create_table "locations", force: :cascade do |t|
+    t.decimal  "lat",            precision: 10, scale: 8
+    t.decimal  "lon",            precision: 10, scale: 8
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
-  create_table "summaries", force: :cascade do |t|
-    t.text     "text"
-    t.string   "image_file_name"
-    t.string   "audio_file_name"
-    t.integer  "site_id"
+  create_table "ratings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "rated_id"
+    t.string   "rated_type"
+    t.integer  "score"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string   "tagline"
+    t.text     "body"
+    t.integer  "reviewed_id"
+    t.string   "reviewed_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "tour_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.text     "description"
+    t.string   "image_file_name"
+    t.string   "audio_file_name"
   end
 
   create_table "tours", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.float    "distance"
     t.integer  "duration"
-    t.decimal  "start_lat",  precision: 10, scale: 8
-    t.decimal  "start_lon",  precision: 10, scale: 8
+    t.decimal  "start_lat",   precision: 10, scale: 8
+    t.decimal  "start_lon",   precision: 10, scale: 8
     t.string   "category"
+    t.text     "description"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "password_digest"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "access_token"
+    t.string   "avatar_file_name"
   end
 
 end
