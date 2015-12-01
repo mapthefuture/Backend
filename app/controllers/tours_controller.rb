@@ -3,9 +3,13 @@ class ToursController < ApplicationController
 
   def index
     @tours = Tour.all
-    if @tours
+    if @tours.first
       render "index.json.jbuilder", status: :ok 
         # status 200
+    else
+      render json: { error: "There are no tours to display."},
+        status: :unprocessable_entity
+          # status 422
     end
   end
 
