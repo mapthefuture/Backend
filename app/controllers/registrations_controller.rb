@@ -29,7 +29,8 @@ class RegistrationsController < ApplicationController
     @user = User.find(params[:id])
     if current_user && @user.id == current_user.id
       @user.update(user_params)
-      render "update.json.jbuilder"
+      render "update.json.jbuilder", status: :accepted
+        # status 202
     else 
       render json: { error: "You are not authorized to update this user." },
         status: :unauthorized
@@ -41,7 +42,7 @@ class RegistrationsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       @user.destroy
-      render plain: "The user has been deleted successfully."
+      render plain: "The user has been deleted successfully.", status: :accepted # status 202
     else
       render json: { error: "Invalid email or password." },
         status: :unauthorized
