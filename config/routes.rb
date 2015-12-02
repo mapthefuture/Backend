@@ -43,8 +43,8 @@ Rails.application.routes.draw do
   get "tours/:id/sites", to: "sites#index"
   post "tours/:id/sites", to: "sites#create"
   patch "sites/:id", to: "sites#update"
-  get "tours/:id", to: "sites#show"
-  delete "tours/:id", to: "sites#destroy"
+  get "sites/:id", to: "sites#show"
+  delete "sites/:id", to: "sites#destroy"
 
   # Example resource route with sub-resources:
   #   resources :products do
