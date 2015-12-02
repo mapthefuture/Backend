@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202001350) do
+ActiveRecord::Schema.define(version: 20151202175422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,20 +19,20 @@ ActiveRecord::Schema.define(version: 20151202001350) do
   enable_extension "earthdistance"
 
   create_table "ratings", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "rated_id"
-    t.string   "rated_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
     t.integer  "score"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.string   "tagline"
     t.text     "body"
-    t.integer  "reviewed_id"
-    t.string   "reviewed_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "reviewable_id"
+    t.string   "reviewable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "sites", force: :cascade do |t|
@@ -43,8 +43,13 @@ ActiveRecord::Schema.define(version: 20151202001350) do
     t.text     "description"
     t.string   "image_file_name"
     t.string   "audio_file_name"
-    t.decimal  "lat",             precision: 10, scale: 8
-    t.decimal  "lon",             precision: 10, scale: 8
+    t.decimal  "latitude",        precision: 10, scale: 8
+    t.decimal  "longitude",       precision: 10, scale: 8
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.integer  "country"
   end
 
   create_table "tours", force: :cascade do |t|

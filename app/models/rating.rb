@@ -1,3 +1,3 @@
 class Rating < ActiveRecord::Base
-  belongs_to :rated, :polymorphic => true
+  belongs_to :rateable, :polymorphic => true
 end
