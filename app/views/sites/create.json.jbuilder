@@ -7,6 +7,6 @@ json.site do
   json.image_url @site.image.url
   json.audio_file_name @site.audio_file_name
   json.audio_url @site.audio.url
-  json.lat @site.lat
-  json.lon @site.lon
+  json.lat @site.latitude
+  json.lon @site.longitude
 end
