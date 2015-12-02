@@ -14,6 +14,8 @@ To make an authenticated request in any case other than registering
 or deleting an account, you must supply an `Access-Token` header with
 a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
 
+## Users
+
 ### Creating a User
 
 #### POST `/signup`
@@ -151,6 +153,8 @@ If the request was unsuccessful, you should receive status code 401 and ...
   "error": "Invalid email address or password."
 }
 ```
+
+## Tours
 
 ### Displaying an Index of Tours
 
@@ -344,4 +348,200 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 
 ```
 "error": "You are not authorized to delete this tour."
+```
+
+## Sites
+
+### Displaying an Index of Sites
+
+#### GET `/tours/:id/sites`
+
+**Params**:
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "sites": [
+    "site": {
+    "id": 7,
+    "tour_id": 4,
+    "title": "The State Hermitage Museum",
+    "description": "A museum of art and culture in Saint Petersburg, Russia.",
+    "image_file_name": "hermitage_facade.png",
+    "audio_file_name": "hermitage_tour_notes.m4a",
+    "lat": "59.9410",
+    "lon": "30.3129"
+  },
+
+    ...
+  ]
+}
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "Either the tour does not exist, or it has no sites to display."
+}
+```
+
+### Displaying a Single Site
+
+#### GET `/sites/:id`
+
+**Params**:
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "site": {
+    "id": 7,
+    "tour_id": 4,
+    "title": "The State Hermitage Museum",
+    "description": "A museum of art and culture in Saint Petersburg, Russia.",
+    "image_file_name": "hermitage_facade.png",
+    "audio_file_name": "hermitage_tour_notes.m4a",
+    "lat": "59.9410",
+    "lon": "30.3129"
+  }
+}
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "Could not find object: Couldn't find Site with 'id'=#{id}"
+}
+```
+
+### Creating a New Site
+
+#### POST `/tours/:id/sites`
+
+**Query Params**:
+
+`id`: Integer
+
+**Post Params**:
+
+`title`: String
+
+`description`: Text
+
+`image_file_name`: String
+
+`audio_file_name`: String
+
+`lat`: Decimal (precision: 10, scope: 8)
+
+`lon`: Decimal (precision: 10, scope: 8)
+
+**Response**
+
+If the request was successful, you should receive the status code 201 and ...
+
+```
+{
+  "site": {
+    "id": 7,
+    "tour_id": 4,
+    "title": "The State Hermitage Museum",
+    "description": "A museum of art and culture in Saint Petersburg, Russia.",
+    "image_file_name": "hermitage_facade.png",
+    "audio_file_name": "hermitage_tour_notes.m4a",
+    "lat": "59.9410",
+    "lon": "30.3129"
+  }
+}
+```
+
+If the request failed, you should receive the status code 401 and ...
+
+```
+{
+  error: "You are not authorized to add a site to this tour."
+}
+```
+
+### Updating an Existing Site
+
+#### PATCH `/sites/:id`
+
+**Query Params**:
+
+`id`: Integer
+
+**Post Params**:
+
+`title`: String
+
+`description`: Text
+
+`image_file_name`: String
+
+`audio_file_name`: String
+
+`lat`: Decimal (precision: 10, scope: 8)
+
+`lon`: Decimal (precision: 10, scope: 8)
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+{
+  "site": {
+    "id": 7,
+    "tour_id": 4,
+    "title": "The State Hermitage Museum",
+    "description": "A museum of art and culture in Saint Petersburg, Russia.",
+    "image_file_name": "hermitage_facade.png",
+    "audio_file_name": "hermitage_tour_notes.m4a",
+    "lat": "59.9410",
+    "lon": "30.3129"
+  }
+}
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+{
+  error: "You are not authorized to modify this site."
+}
+```
+
+### Deleting an Exisiting Site
+
+#### DELETE `/sites/:id`
+
+**Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+"The site has been deleted successfully."
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+"error": "You are not authorized to delete this site."
 ```
