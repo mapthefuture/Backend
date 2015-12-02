@@ -73,6 +73,6 @@ class SitesController < ApplicationController
   private
 
   def site_params
-    params.permit(:title, :description, :image_file_name, :audio_file_name, :lat, :lon)
+    params.permit(:title, :description, :image, :audio, :latitude, :longitude)
   end  
 end
