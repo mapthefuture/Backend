@@ -30,6 +30,8 @@ a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
 
 `password`: String
 
+`avatar`: File (acceptable formats: png, jpg/jpeg)
+
 **Response**:
 
 If the user was created successfully, you should receive status code 201 and ...
@@ -41,7 +43,10 @@ If the user was created successfully, you should receive status code 201 and ...
     "first_name": "John",
     "last_name": "Dough",
     "email": "name@email.com",
-    "access_token": "9f5b8ebf876121c3fc4c0fa18a511e16"
+    "access_token": "9f5b8ebf876121c3fc4c0fa18a511e16",
+    "avatar_file_name": "profile_picture.jpg",
+    "avatar_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                   profile_picture.jpg"
   }
 }
 ```
@@ -76,7 +81,10 @@ If the request was successful, you should receive status code 200 and ...
     "first_name": "John",
     "last_name": "Dough",
     "email": "name@email.com",
-    "access_token": "9f5b8ebf876121c3fc4c0fa18a511e16"
+    "access_token": "9f5b8ebf876121c3fc4c0fa18a511e16",
+    "avatar_file_name": "profile_picture.jpg",
+    "avatar_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                   profile_picture.jpg"
   }
 }
 ```
@@ -91,7 +99,7 @@ If the request was not successful, you should receive status code 401 and ...
 
 ### Updating a User
 
-#### PATCH `/user/update`
+#### PATCH `/user/:id/update`
 
 **Query Params**:
 
@@ -107,6 +115,8 @@ If the request was not successful, you should receive status code 401 and ...
 
 `password`: String
 
+`avatar`: File (acceptable formats: png, jpg/jpeg)
+
 **Response**:
 
 If the request was successful, you should receive status code 202 and ...
@@ -118,7 +128,10 @@ If the request was successful, you should receive status code 202 and ...
     "first_name": "Juan",
     "last_name": "Deaux",
     "email": "name@email.com",
-    "access_token": "9f5b8ebf876121c3fc4c0fa18a511e16"
+    "access_token": "9f5b8ebf876121c3fc4c0fa18a511e16",
+    "avatar_file_name": "profile_picture.jpg",
+    "avatar_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                   profile_picture.jpg"
   }
 }
 ```
@@ -366,16 +379,18 @@ If the request was successful, you should receive the status code 200 and ...
 
 ```
 {
-  "sites": [
-    "site": {
+  "site": {
     "id": 7,
     "tour_id": 4,
     "title": "The State Hermitage Museum",
     "description": "A museum of art and culture in Saint Petersburg, Russia.",
     "image_file_name": "hermitage_facade.png",
+    "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                  hermitage_facade.png",
     "audio_file_name": "hermitage_tour_notes.m4a",
-    "lat": "59.9410",
-    "lon": "30.3129"
+    "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
+    "latitude": "59.9410",
+    "longitude": "30.3129"
   },
 
     ...
@@ -411,9 +426,12 @@ If the request was successful, you should receive the status code 200 and ...
     "title": "The State Hermitage Museum",
     "description": "A museum of art and culture in Saint Petersburg, Russia.",
     "image_file_name": "hermitage_facade.png",
+    "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                  hermitage_facade.png",
     "audio_file_name": "hermitage_tour_notes.m4a",
-    "lat": "59.9410",
-    "lon": "30.3129"
+    "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
+    "latitude": "59.9410",
+    "longitude": "30.3129"
   }
 }
 ```
@@ -440,13 +458,13 @@ If the request failed, you should receive the status code 404 and ...
 
 `description`: Text
 
-`image_file_name`: String
+`image`: File (acceptable formats: png, jpg/jpeg)
 
-`audio_file_name`: String
+`audio`: File (acceptable formats: mp3, m4a)
 
-`lat`: Decimal (precision: 10, scope: 8)
+`latitude`: Decimal (precision: 10, scope: 8)
 
-`lon`: Decimal (precision: 10, scope: 8)
+`longitude`: Decimal (precision: 10, scope: 8)
 
 **Response**
 
@@ -460,9 +478,12 @@ If the request was successful, you should receive the status code 201 and ...
     "title": "The State Hermitage Museum",
     "description": "A museum of art and culture in Saint Petersburg, Russia.",
     "image_file_name": "hermitage_facade.png",
+    "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                  hermitage_facade.png",
     "audio_file_name": "hermitage_tour_notes.m4a",
-    "lat": "59.9410",
-    "lon": "30.3129"
+    "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
+    "latitude": "59.9410",
+    "longitude": "30.3129"
   }
 }
 ```
@@ -489,13 +510,13 @@ If the request failed, you should receive the status code 401 and ...
 
 `description`: Text
 
-`image_file_name`: String
+`image`: File (acceptable formats: png, jpg/jpeg)
 
-`audio_file_name`: String
+`audio`: File (acceptable formats: mp3, m4a)
 
-`lat`: Decimal (precision: 10, scope: 8)
+`latitude`: Decimal (precision: 10, scope: 8)
 
-`lon`: Decimal (precision: 10, scope: 8)
+`longitude`: Decimal (precision: 10, scope: 8)
 
 **Response**
 
@@ -509,9 +530,12 @@ If the request was successful, you should receive the status code 202 and ...
     "title": "The State Hermitage Museum",
     "description": "A museum of art and culture in Saint Petersburg, Russia.",
     "image_file_name": "hermitage_facade.png",
+    "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                  hermitage_facade.png",
     "audio_file_name": "hermitage_tour_notes.m4a",
-    "lat": "59.9410",
-    "lon": "30.3129"
+    "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
+    "latitude": "59.9410",
+    "longitude": "30.3129"
   }
 }
 ```
