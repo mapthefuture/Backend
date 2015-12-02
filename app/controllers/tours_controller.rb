@@ -1,16 +1,20 @@
 class ToursController < ApplicationController
-  # before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:create]
 
   def index
     @tours = Tour.all
-    if @tours
+    if @tours.first
       render "index.json.jbuilder", status: :ok 
         # status 200
+    else
+      render json: { error: "There are no tours to display." },
+        status: :not_found
+          # status 404
     end
   end
 
   def create
-    @tour = Tour.new(tour_params)
+    @tour = current_user.tours.new(tour_params)
     if @tour.save
       render "create.json.jbuilder", status: :created 
         # status 201
@@ -48,6 +52,7 @@ class ToursController < ApplicationController
   private
 
   def tour_params
-    params.permit(:title, :distance, :duration, :start_lat, :start_lon, :category, :description, :user_id) # user_id needs to be removed when authentication has been implemented
+    params.permit(:title, :distance, :duration, :start_lat, :start_lon, 
+                  :category, :description, :user_id) # user_id needs to be removed when authentication has been implemented
   end
 end
