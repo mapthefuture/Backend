@@ -62,6 +62,7 @@ GEM
     execjs (2.6.0)
     foreman (0.78.0)
       thor (~> 0.19.1)
+    geocoder (1.2.12)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -178,6 +179,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   foreman
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
