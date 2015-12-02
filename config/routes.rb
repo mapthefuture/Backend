@@ -39,6 +39,13 @@ Rails.application.routes.draw do
   get "tours/:id", to: "tours#show"
   delete "tours/:id", to: "tours#destroy"
 
+  ## Site Routes
+  get "tours/:id/sites", to: "sites#index"
+  post "tours/:id/sites", to: "sites#create"
+  patch "sites/:id", to: "sites#update"
+  get "tours/:id", to: "sites#show"
+  delete "tours/:id", to: "sites#destroy"
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
