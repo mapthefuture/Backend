@@ -1,6 +1,5 @@
 class Site < ActiveRecord::Base
   belongs_to :tour
-  has_one :location
   has_many :ratings, as: :rated
 
   has_attached_file :image 
