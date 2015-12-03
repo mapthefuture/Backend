@@ -1,27 +1,27 @@
-class TourRatingsController < ApplicationController
+class SiteRatingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    tour = Tour.find(params[:id])
-    if tour && tour.ratings.first
-      @ratings = tour.ratings
+    site = Site.find(params[:id])
+    if site && site.ratings.first
+      @ratings = site.ratings
       render "index.json.jbuilder", status: :ok
         # status: 200
     else 
-      render json: { error: "The requested tour has no ratings to display." },
+      render json: { error: "The requested site has no ratings to display." },
         status: :not_found
           # status: 404
     end
   end
 
   def create
-    tour = Tour.find(params[:id])
-    if current_user.ratings.where(rateable_id: tour.id, rateable_type: "Tour")
-      render json: { error: "User cannot rate a tour more than once." },
+    site = Site.find(params[:id])
+    if current_user.ratings.where(rateable_id: site.id, rateable_type: "Site")
+      render json: { error: "User cannot rate a site more than once." },
         status: :forbidden
           # status: 403
     else 
-      @rating = tour.ratings.new(score: params[:score], user_id: current_user.id)
+      @rating = site.ratings.new(score: params[:score], user_id: current_user.id)
         if @rating.score.between?(1,5)
           @rating.save
           render "create.json.jbuilder", status: :created 
@@ -43,12 +43,13 @@ class TourRatingsController < ApplicationController
   end
 
   def update 
-    @rating = Rating.find(params[:id])
+   @rating = Rating.find(params[:id])
     if self.validate_rating_ownership
       old_score = @rating.score
       @rating.update(score: params[:score])
       if @rating.score.between?(1,5)
-        render "update.json.jbuilder", status: :accepted # status 202
+        render "update.json.jbuilder", status: :accepted 
+          # status 202
       else
         @rating.update(score: old_score)
         render json: { error: "You must enter a valid rating (1 - 5)" },
