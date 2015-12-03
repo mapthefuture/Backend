@@ -16,7 +16,7 @@ a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
 
 ### Table of Contents
 
-- [Users](#)
+* [Users](#)
   - [Creating a User](#)
   - [Viewing a Single User](#)
   - [Updating a User](#)
