@@ -16,52 +16,36 @@ a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
 
 ### Table of Contents
 
-- [Users](#)
-  - [Creating a User](#)
-    - [POST /signup](#)
-  - [Viewing a Single User](#)
-    - [POST /user/show](#)
-  - [Updating a User](#)
-    - [PATCH /user/:id/update](#)
-  - [Deleting a User](#)
-    - [DELETE /user/destroy](#)
-- [Tours](#)
-  - [Displaying an Index of Tours](#)
-    - [GET /tours](#)
-  - [Displaying a Single Tour](#)
-    - [GET /tours/:id](#)
-  - [Creating a New Tour](#)
-    - [POST /tours](#)
-  - [Updating an Existing Tour](#)
-    - [PATCH /tours/:id](#)
-  - [Deleting an Exisiting Tour](#)
-    - [DELETE /tours/:id](#)
-- [Sites](#)
-  - [Displaying an Index of Sites](#)
-    - [GET /tours/:id/sites](#)
-  - [Displaying a Single Site](#)
-    - [GET /sites/:id](#)
-  - [Creating a New Site](#)
-    - [POST /tours/:id/sites](#)
-  - [Updating an Existing Site](#)
-    - [PATCH /sites/:id](#)
-  - [Deleting an Exisiting Site](#)
-    - [DELETE /sites/:id](#)
-- [Tour Ratings](#)
-  - [Displaying an Index of Tour Ratings](#)
-    - [GET /tours/:id/ratings](#)
-  - [Displaying a Single Rating](#)
-    - [GET /ratings/:id](#)
-  - [Creating a New Rating](#)
-    - [POST /tours/:id/ratings](#)
-  - [Updating an Existing Rating](#)
-    - [PATCH /ratings/:id](#)
-  - [Deleting an Exisiting Site](#)
-    - [DELETE /ratings/:id](#)
+* [Users](#user-endpoints)
+  * [Creating a User](#create-user)
+  * [Viewing a Single User](#show-user)
+  * [Updating a User](#update-user)
+  * [Deleting a User](#delete-user)
 
-## Users
+* [Tours](#tour-endpoints)
+  * [Displaying an Index of Tours](#index-tours)
+  * [Displaying a Single Tour](#show-tour)
+  * [Creating a New Tour](#create-tour)
+  * [Updating an Existing Tour](#update-tour)
+  * [Deleting an Exisiting Tour](#delete-tour)
 
-### Creating a User
+* [Sites](#site-endpoints)
+  * [Displaying an Index of Sites](#index-sites)
+  * [Displaying a Single Site](#show-site)
+  * [Creating a New Site](#create-site)
+  * [Updating an Existing Site](#update-site)
+  * [Deleting an Exisiting Site](#delete-site)
+
+* [Tour Ratings](#tr-endpoints)
+  * [Displaying an Index of Tour Ratings](#index-tr)
+  * [Displaying a Single Rating](#show-tr)
+  * [Creating a New Rating](#create-tr)
+  * [Updating an Existing Rating](#update-tr)
+  * [Deleting an Exisiting Site](#delete-tr)
+
+##<a name="user-endpoints"></a> Users
+
+###<a name="create-user"></a> Creating a User
 
 #### POST `/signup`
 
