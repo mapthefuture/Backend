@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   ## Registration Routes
   post "signup", to: "registrations#create"
   post "user/show", to: "registrations#show"
-  patch "user/update", to: "registrations#update"
+  patch "user/:id/update", to: "registrations#update"
   delete "user/destroy", to: "registrations#destroy"
 
   ## Tour Routes
@@ -38,13 +38,21 @@ Rails.application.routes.draw do
   patch "tours/:id", to: "tours#update"
   get "tours/:id", to: "tours#show"
   delete "tours/:id", to: "tours#destroy"
-
+ 
   ## Site Routes
   get "tours/:id/sites", to: "sites#index"
   post "tours/:id/sites", to: "sites#create"
   patch "sites/:id", to: "sites#update"
   get "sites/:id", to: "sites#show"
   delete "sites/:id", to: "sites#destroy"
+
+  # ## Tour Rating Routes
+  # get "tours/:id/ratings", to: "tour_ratings#index"
+  # post "tours/:id/ratings", to: "tour_ratings#create"
+  # get "ratings/:id", to: "tour_ratings#show"
+  # patch "ratings/:id", to: "tour_ratings#update"
+  # delete "ratings/:id", to: "tour_ratings#destroy"
+  # get "tours/:id/ratings", to: "tour_ratings#mean"
 
   # Example resource route with sub-resources:
   #   resources :products do
