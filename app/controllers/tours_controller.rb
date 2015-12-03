@@ -28,7 +28,8 @@ class ToursController < ApplicationController
   def show
     @tour = Tour.find(params[:id])
     if @tour
-      render "show.json.jbuilder", status: :ok # status 200
+      render "show.json.jbuilder", status: :ok 
+        # status 200
     end
   end
 
@@ -49,15 +50,10 @@ class ToursController < ApplicationController
     end
   end
 
-  def mean
-    mean = @tour.ratings.average(:score)
-    mean
-  end
-
   private
 
   def tour_params
     params.permit(:title, :distance, :duration, :start_lat, :start_lon, 
-                  :category, :description, :user_id) # user_id needs to be removed when authentication has been implemented
+                  :category, :description)
   end
 end
