@@ -251,7 +251,7 @@ If the request failed, you should receive the status code 404 and ...
 
 `distance`: Float (in miles)
 
-`duration`: Integer (in hours)
+`duration`: Integer (in seconds)
 
 `start_lat`: Decimal (precision: 10, scope: 8)
 
@@ -303,7 +303,7 @@ If the request failed, you should receive the status code 422 and ...
 
 `distance`: Float (in miles)
 
-`duration`: Integer (in hours)
+`duration`: Integer (in seconds)
 
 `start_lat`: Decimal (precision: 10, scope: 8)
 
