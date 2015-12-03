@@ -89,7 +89,7 @@ If the user could not be created, you should receive status code 422 and ...
 }
 ```
 
-### Viewing a Single User
+###<a name="show-user"></a> Viewing a Single User
 
 #### POST `/user/show`
 
@@ -126,7 +126,7 @@ If the request was not successful, you should receive status code 401 and ...
 }
 ```
 
-### Updating a User
+###<a name="update-user"></a> Updating a User
 
 #### PATCH `/user/:id/update`
 
@@ -173,7 +173,7 @@ If the request was not successful, you should receive status code 401 and ...
 }
 ```
 
-### Deleting a User
+###<a name="delete-user"></a> Deleting a User
 
 #### DELETE `/user/destroy`
 
@@ -196,9 +196,9 @@ If the request was unsuccessful, you should receive status code 401 and ...
 }
 ```
 
-## Tours
+##<a name="tour-endpoints"></a> Tours
 
-### Displaying an Index of Tours
+###<a name="index-tours"></a> Displaying an Index of Tours
 
 #### GET `/tours`
 
@@ -234,7 +234,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-### Displaying a Single Tour
+###<a name="show-tour"></a> Displaying a Single Tour
 
 #### GET `/tours/:id`
 
@@ -270,7 +270,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-### Creating a New Tour
+###<a name="create-tour"></a> Creating a New Tour
 
 #### POST `/tours`
 
@@ -318,7 +318,7 @@ If the request failed, you should receive the status code 422 and ...
 }
 ```
 
-### Updating an Existing Tour
+###<a name="update-tour"></a> Updating an Existing Tour
 
 #### PATCH `/tours/:id`
 
@@ -370,7 +370,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-### Deleting an Exisiting Tour
+###<a name="delete-tour"></a> Deleting an Exisiting Tour
 
 #### DELETE `/tours/:id`
 
@@ -392,9 +392,9 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 "error": "You are not authorized to delete this tour."
 ```
 
-## Sites
+##<a name="site-endpoints"></a> Sites
 
-### Displaying an Index of Sites
+###<a name="index-sites"></a> Displaying an Index of Sites
 
 #### GET `/tours/:id/sites`
 
@@ -436,7 +436,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-### Displaying a Single Site
+###<a name="show-site"></a> Displaying a Single Site
 
 #### GET `/sites/:id`
 
@@ -474,7 +474,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-### Creating a New Site
+###<a name="create-site"></a> Creating a New Site
 
 #### POST `/tours/:id/sites`
 
@@ -526,7 +526,7 @@ If the request failed, you should receive the status code 401 and ...
 }
 ```
 
-### Updating an Existing Site
+###<a name="update-site"></a> Updating an Existing Site
 
 #### PATCH `/sites/:id`
 
@@ -578,7 +578,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-### Deleting an Exisiting Site
+###<a name="delete-site"></a> Deleting an Exisiting Site
 
 #### DELETE `/sites/:id`
 
@@ -600,9 +600,9 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 "error": "You are not authorized to delete this site."
 ```
 
-## Tour Ratings
+##<a name="tr-endpoints"></a> Tour Ratings
 
-### Displaying an Index of Tour Ratings
+###<a name="index-tr"></a> Displaying an Index of Tour Ratings
 
 #### GET `/tours/:id/ratings`
 
@@ -637,7 +637,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-### Displaying a Single Rating
+###<a name="show-tr"></a> Displaying a Single Tour Rating
 
 #### GET `/ratings/:id`
 
@@ -667,7 +667,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-### Creating a New Rating
+###<a name="create-tr"></a> Creating a New Tour Rating
 
 #### POST `/tours/:id/ratings`
 
@@ -702,7 +702,7 @@ If the request failed, you should receive the status code 400 and ...
 }
 ```
 
-### Updating an Existing Rating
+###<a name="update-tr"></a> Updating an Existing Rating
 
 #### PATCH `/ratings/:id`
 
@@ -737,7 +737,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-### Deleting an Exisiting Site
+###<a name="delete-tr"></a> Deleting an Exisiting Site
 
 #### DELETE `/ratings/:id`
 
