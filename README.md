@@ -16,32 +16,48 @@ a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
 
 ### Table of Contents
 
-* [Users](#)
+- [Users](#)
   - [Creating a User](#)
+    - [POST /signup](#)
   - [Viewing a Single User](#)
+    - [POST /user/show](#)
   - [Updating a User](#)
+    - [PATCH /user/:id/update](#)
   - [Deleting a User](#)
-
+    - [DELETE /user/destroy](#)
 - [Tours](#)
   - [Displaying an Index of Tours](#)
+    - [GET /tours](#)
   - [Displaying a Single Tour](#)
+    - [GET /tours/:id](#)
   - [Creating a New Tour](#)
+    - [POST /tours](#)
   - [Updating an Existing Tour](#)
+    - [PATCH /tours/:id](#)
   - [Deleting an Exisiting Tour](#)
-
+    - [DELETE /tours/:id](#)
 - [Sites](#)
   - [Displaying an Index of Sites](#)
+    - [GET /tours/:id/sites](#)
   - [Displaying a Single Site](#)
+    - [GET /sites/:id](#)
   - [Creating a New Site](#)
+    - [POST /tours/:id/sites](#)
   - [Updating an Existing Site](#)
+    - [PATCH /sites/:id](#)
   - [Deleting an Exisiting Site](#)
-
+    - [DELETE /sites/:id](#)
 - [Tour Ratings](#)
   - [Displaying an Index of Tour Ratings](#)
+    - [GET /tours/:id/ratings](#)
   - [Displaying a Single Rating](#)
+    - [GET /ratings/:id](#)
   - [Creating a New Rating](#)
+    - [POST /tours/:id/ratings](#)
   - [Updating an Existing Rating](#)
+    - [PATCH /ratings/:id](#)
   - [Deleting an Exisiting Site](#)
+    - [DELETE /ratings/:id](#)
 
 ## Users
 
