@@ -181,15 +181,15 @@ If the request was successful, you should receive the status code 200 and ...
 {
   "tours": [
     "tour": {
-    "id": 7,
-    "user_id": 4,
-    "title": "Charleston Gardens",
-    "distance": 3,
-    "duration": 2,
-    "start_lat": "33.8428",
-    "start_lon": "84.3857",
-    "category": "Food",
-    "description": "Lots of topiaries."
+      "id": 7,
+      "user_id": 4,
+      "title": "Charleston Gardens",
+      "distance": 3,
+      "duration": 2,
+      "start_lat": "33.8428",
+      "start_lon": "84.3857",
+      "category": "Food",
+      "description": "Lots of topiaries."
   },
 
     ...
@@ -379,18 +379,19 @@ If the request was successful, you should receive the status code 200 and ...
 
 ```
 {
-  "site": {
-    "id": 7,
-    "tour_id": 4,
-    "title": "The State Hermitage Museum",
-    "description": "A museum of art and culture in Saint Petersburg, Russia.",
-    "image_file_name": "hermitage_facade.png",
-    "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
-                  hermitage_facade.png",
-    "audio_file_name": "hermitage_tour_notes.m4a",
-    "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
-    "latitude": "59.9410",
-    "longitude": "30.3129"
+  "sites": [
+    "site": {
+      "id": 7,
+      "tour_id": 4,
+      "title": "The State Hermitage Museum",
+      "description": "A museum of art and culture in Saint Petersburg, Russia.",
+      "image_file_name": "hermitage_facade.png",
+      "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                    hermitage_facade.png",
+      "audio_file_name": "hermitage_tour_notes.m4a",
+      "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
+      "latitude": "59.9410",
+      "longitude": "30.3129"
   },
 
     ...
@@ -569,3 +570,163 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 ```
 "error": "You are not authorized to delete this site."
 ```
+
+## Tour Ratings
+
+### Displaying an Index of Tour Ratings
+
+#### GET `/tours/:id/ratings`
+
+**Params**:
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "ratings": [
+    "rating": {
+      "id": 7,
+      "score": 4,
+      "rateable_id": 3,
+      "rateable_type": "Tour",
+  },
+
+    ...
+  ]
+},
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "Either the tour does not exist, or it has no ratings to display."
+}
+```
+
+### Displaying a Single Rating
+
+#### GET `/ratings/:id`
+
+**Params**:
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "rating": {
+      "id": 7,
+      "score": 4,
+      "rateable_id": 3,
+      "rateable_type": "Tour",
+}
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "Could not find object: Couldn't find Rating with 'id'=#{id}"
+}
+```
+
+### Creating a New Rating
+
+#### POST `/tours/:id/ratings`
+
+**Query Params**:
+
+`id`: Integer
+
+**Post Params**:
+
+`score`: Integer (1 <= score <= 5)
+
+**Response**
+
+If the request was successful, you should receive the status code 201 and ...
+
+```
+{
+  "rating": {
+      "id": 7,
+      "score": 4,
+      "rateable_id": 3,
+      "rateable_type": "Tour",
+  }
+}
+```
+
+If the request failed, you should receive the status code 400 and ...
+
+```
+{
+  error: "You must enter a valid rating (1 - 5)"
+}
+```
+
+### Updating an Existing Rating
+
+#### PATCH `/ratings/:id`
+
+**Query Params**:
+
+`id`: Integer
+
+**Post Params**:
+
+`score`: Integer (1 <= score <= 5)
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+{
+  "rating": {
+      "id": 7,
+      "score": 4,
+      "rateable_id": 3,
+      "rateable_type": "Tour",
+  }
+}
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+{
+  error: "You are not authorized to modify this site."
+}
+```
+
+### Deleting an Exisiting Site
+
+#### DELETE `/ratings/:id`
+
+**Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+"The rating has been deleted successfully."
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+"error": "You are not authorized to delete this rating."
+```
+

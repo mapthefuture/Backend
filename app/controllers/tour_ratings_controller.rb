@@ -3,10 +3,14 @@ class TourRatingsController < ApplicationController
 
   def index
     tour = Tour.find(params[:id])
-    if tour
+    if tour && tour.ratings.first
       @ratings = tour.ratings
       render "index.json.jbuilder", status: :ok
         # status: 200
+    else 
+      render json: { error: "The requested tour has no ratings to display." },
+        status: :not_found
+          # status: 404
     end
   end
 
@@ -19,8 +23,8 @@ class TourRatingsController < ApplicationController
           # status: 201
       else 
         render json: { error: "You must enter a valid rating (1 - 5)" },
-          status: :unprocessable_entity
-            # status: 422
+          status: :bad_request
+            # status: 400
       end
   end
 
