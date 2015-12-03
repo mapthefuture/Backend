@@ -14,6 +14,35 @@ To make an authenticated request in any case other than registering
 or deleting an account, you must supply an `Access-Token` header with
 a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
 
+**Table of Contents**
+
+- [Users](#)
+  - [Creating a User](#)
+  - [Viewing a Single User](#)
+  - [Updating a User](#)
+  - [Deleting a User](#)
+
+- [Tours](#)
+  - [Displaying an Index of Tours](#)
+  - [Displaying a Single Tour](#)
+  - [Creating a New Tour](#)
+  - [Updating an Existing Tour](#)
+  - [Deleting an Exisiting Tour](#)
+
+- [Sites](#)
+  - [Displaying an Index of Sites](#)
+  - [Displaying a Single Site](#)
+  - [Creating a New Site](#)
+  - [Updating an Existing Site](#)
+  - [Deleting an Exisiting Site](#)
+
+- [Tour Ratings](#)
+  - [Displaying an Index of Tour Ratings](#)
+  - [Displaying a Single Rating](#)
+  - [Creating a New Rating](#)
+  - [Updating an Existing Rating](#)
+  - [Deleting an Exisiting Site](#)
+
 ## Users
 
 ### Creating a User
