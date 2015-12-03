@@ -52,7 +52,13 @@ Rails.application.routes.draw do
   get "ratings/:id", to: "tour_ratings#show"
   patch "ratings/:id", to: "tour_ratings#update"
   delete "ratings/:id", to: "tour_ratings#destroy"
-  get "tours/:id/ratings", to: "tour_ratings#mean"
+
+  ## Site Rating Routes
+  get "sites/:id/ratings", to: "site_ratings#index"
+  post "sites/:id/ratings", to: "site_ratings#create"
+  get "sites/:id", to: "site_ratings#show"
+  patch "ratings/:id", to: "site_ratings#update"
+  delete "ratings/:id", to: "site_ratings#destroy"
 
   # Example resource route with sub-resources:
   #   resources :products do
