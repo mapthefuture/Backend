@@ -14,7 +14,7 @@ To make an authenticated request in any case other than registering
 or deleting an account, you must supply an `Access-Token` header with
 a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
 
-**Table of Contents**
+### Table of Contents
 
 - [Users](#)
   - [Creating a User](#)
