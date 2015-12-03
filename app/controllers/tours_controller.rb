@@ -2,7 +2,7 @@ class ToursController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def index
-    @tours = Tour.all
+    @tours = Tour.includes(:ratings).all
     if @tours.first
       render "index.json.jbuilder", status: :ok 
         # status 200
@@ -47,6 +47,11 @@ class ToursController < ApplicationController
       tour.destroy
       render plain: "The tour has been deleted successfully."
     end
+  end
+
+  def mean
+    mean = @tour.ratings.average(:score)
+    mean
   end
 
   private

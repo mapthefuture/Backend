@@ -1,3 +1,12 @@
 json.tour do
-  json.extract! @tour, :id, :user_id, :title, :distance, :duration, :start_lat, :start_lon, :category, :description
+  json.id @tour.id
+  json.user_id @tour.user_id
+  json.title @tour.title
+  json.distance @tour.distance
+  json.duration @tour.duration
+  json.start_lat @tour.start_lat
+  json.start_lon @tour.start_lon
+  json.category @tour.category
+  json.description @tour.description
+  json.average_rating @tour.ratings.average(:score)
 end
