@@ -60,6 +60,11 @@ Rails.application.routes.draw do
   patch "ratings/:id", to: "site_ratings#update"
   delete "ratings/:id", to: "site_ratings#destroy"
 
+  ## User Routes
+  get "users/:id/site_ratings", to: "users#site_ratings"
+  get "users/:id/tour_ratings", to: "users#tour_ratings"
+  get "users/:id/tour_reviews", to: "users#tour_reviews"
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
