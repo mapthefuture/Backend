@@ -703,7 +703,7 @@ If the request failed, you should receive the status code 400 and ...
 }
 ```
 
-###<a name="update-tr"></a> Updating an Existing Rating
+###<a name="update-tr"></a> Updating an Existing Tour Rating
 
 #### PATCH `/ratings/:id`
 
@@ -738,7 +738,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="delete-tr"></a> Deleting an Exisiting Rating
+###<a name="delete-tr"></a> Deleting an Exisiting Tour Rating
 
 #### DELETE `/ratings/:id`
 
