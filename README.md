@@ -60,9 +60,9 @@ Authentication is required for all create, update, and destroy endpoints.
   *[Creating a Favorite](#create-favorite)
   *[Deleting a Favorite](#destroy-favorite)
 
-##<a name="registration-endpoints"></a> Registration
+##<a name="registration-endpoints"></a>Registration
 
-###<a name="create-user"></a> Creating a User
+###<a name="create-user"></a>Creating a User
 
 #### POST `/signup`
 
@@ -105,7 +105,7 @@ If the user could not be created, you should receive status code 422 and ...
 }
 ```
 
-###<a name="show-user"></a> Viewing a Single User
+###<a name="show-user"></a>Viewing a Single User
 
 #### POST `/user/show`
 
@@ -142,7 +142,7 @@ If the request was not successful, you should receive status code 401 and ...
 }
 ```
 
-###<a name="update-user"></a> Updating a User
+###<a name="update-user"></a>Updating a User
 
 #### PATCH `/user/:id/update`
 
@@ -189,7 +189,7 @@ If the request was not successful, you should receive status code 401 and ...
 }
 ```
 
-###<a name="delete-user"></a> Deleting a User
+###<a name="delete-user"></a>Deleting a User
 
 #### DELETE `/user/destroy`
 
@@ -212,9 +212,9 @@ If the request was unsuccessful, you should receive status code 401 and ...
 }
 ```
 
-##<a name="tour-endpoints"></a> Tours
+##<a name="tour-endpoints"></a>Tours
 
-###<a name="index-tours"></a> Displaying an Index of Tours
+###<a name="index-tours"></a>Displaying an Index of Tours
 
 #### GET `/tours`
 
@@ -250,7 +250,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="show-tour"></a> Displaying a Single Tour
+###<a name="show-tour"></a>Displaying a Single Tour
 
 #### GET `/tours/:id`
 
@@ -286,7 +286,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="create-tour"></a> Creating a New Tour
+###<a name="create-tour"></a>Creating a New Tour
 
 #### POST `/tours`
 
@@ -334,7 +334,7 @@ If the request failed, you should receive the status code 422 and ...
 }
 ```
 
-###<a name="update-tour"></a> Updating an Existing Tour
+###<a name="update-tour"></a>Updating an Existing Tour
 
 #### PATCH `/tours/:id`
 
@@ -386,7 +386,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="delete-tour"></a> Deleting an Existing Tour
+###<a name="delete-tour"></a>Deleting an Existing Tour
 
 #### DELETE `/tours/:id`
 
@@ -410,9 +410,9 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-##<a name="site-endpoints"></a> Sites
+##<a name="site-endpoints"></a>Sites
 
-###<a name="index-sites"></a> Displaying an Index of Sites
+###<a name="index-sites"></a>Displaying an Index of Sites
 
 #### GET `/tours/:id/sites`
 
@@ -454,7 +454,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="show-site"></a> Displaying a Single Site
+###<a name="show-site"></a>Displaying a Single Site
 
 #### GET `/sites/:id`
 
@@ -492,7 +492,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="create-site"></a> Creating a New Site
+###<a name="create-site"></a>Creating a New Site
 
 #### POST `/tours/:id/sites`
 
@@ -544,7 +544,7 @@ If the request failed, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="update-site"></a> Updating an Existing Site
+###<a name="update-site"></a>Updating an Existing Site
 
 #### PATCH `/sites/:id`
 
@@ -596,7 +596,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="delete-site"></a> Deleting an Existing Site
+###<a name="delete-site"></a>Deleting an Existing Site
 
 #### DELETE `/sites/:id`
 
@@ -618,9 +618,9 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 "error": "You are not authorized to delete this site."
 ```
 
-##<a name="tr-endpoints"></a> Ratings
+##<a name="tr-endpoints"></a>Ratings
 
-###<a name="index-tr"></a> Displaying an Index of Ratings
+###<a name="index-tr"></a>Displaying an Index of Ratings
 
 #### GET `/tours/:id/ratings` (tour ratings)
 #### GET `/sites/:id/ratings` (site ratings)
@@ -656,7 +656,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="show-tr"></a> Displaying a Single Rating
+###<a name="show-tr"></a>Displaying a Single Rating
 
 #### GET `/ratings/:id`
 
@@ -686,7 +686,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="create-tr"></a> Creating a New Rating
+###<a name="create-tr"></a>Creating a New Rating
 
 #### POST `/tours/:id/ratings` (tours)
 #### POST `/sites/:id/ratings` (sites)
@@ -722,7 +722,7 @@ If the request failed, you should receive the status code 400 and ...
 }
 ```
 
-###<a name="update-tr"></a> Updating an Existing Rating
+###<a name="update-tr"></a>Updating an Existing Rating
 
 #### PATCH `/ratings/:id`
 
@@ -757,7 +757,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="delete-tr"></a> Deleting an Existing Rating
+###<a name="delete-tr"></a>Deleting an Existing Rating
 
 #### DELETE `/ratings/:id`
 
@@ -781,9 +781,9 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-##<a name="review-endpoints"></a> Reviews
+##<a name="review-endpoints"></a>Reviews
 
-###<a name="index-reviews"></a> Displaying an Index of Reviews
+###<a name="index-reviews"></a>Displaying an Index of Reviews
 
 #### GET `/tours/:id/reviews`
 
@@ -818,7 +818,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="show-review"></a> Displaying a Single Review
+###<a name="show-review"></a>Displaying a Single Review
 
 #### GET `/reviews/:id`
 
@@ -848,7 +848,7 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="create-review"></a> Creating a New Rating
+###<a name="create-review"></a>Creating a New Rating
 
 #### POST `/tours/:id/reviews`
 
@@ -885,7 +885,7 @@ If the request failed, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="update-review"></a> Updating an Existing Review
+###<a name="update-review"></a>Updating an Existing Review
 
 #### PATCH `/reviews/:id`
 
@@ -922,7 +922,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="delete-review"></a> Deleting an Existing Review
+###<a name="delete-review"></a>Deleting an Existing Review
 
 #### DELETE `/reviews/:id`
 
@@ -946,9 +946,9 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-##<a name="user-endpoints"></a> Users
+##<a name="user-endpoints"></a>Users
 
-###<a name="tr-user"></a> Displaying an User's Tour Ratings
+###<a name="tr-user"></a>Displaying a User's Tour Ratings
 
 #### GET `/users/:id/tour_ratings`
 
@@ -983,7 +983,7 @@ If the request was unsuccessful, you should receive the status code 204 and ...
 }
 ```
 
-###<a name="sr-user"></a> Displaying an User's Site Ratings
+###<a name="sr-user"></a>Displaying a User's Site Ratings
 
 #### GET `/users/:id/site_ratings`
 
@@ -1018,7 +1018,7 @@ If the request was unsuccessful, you should receive the status code 204 and ...
 }
 ```
 
-###<a name="reviews-user"></a> Displaying an User's Tour Reviews
+###<a name="reviews-user"></a>Displaying a User's Tour Reviews
 
 #### GET `/users/:id/tour_reviews`
 
@@ -1053,7 +1053,7 @@ If the request was unsuccessful, you should receive the status code 204 and ...
 }
 ```
 
-###<a name="favorites-user"></a> Displaying an User's Favorite Tours
+###<a name="favorites-user"></a>Displaying a User's Favorite Tours
 
 #### GET `/users/:id/favorites`
 
@@ -1085,5 +1085,62 @@ If the request was unsuccessful, you should receive the status code 204 and ...
 ```
 {
   "error": "The user has no favorites to display."
+}
+```
+
+##<a name="favorite-endpoints"></a>Favorites
+
+###<a name="create-favorite"></a>Creating a New Favorite
+
+#### POST `/favorites`
+
+**Post Params**
+
+`tour_id`: Integer (Note: this param must be sent as a post param)
+
+**Response**
+
+If the request was successful, you should receive the status code 201 and ...
+
+```
+{
+  "favorite": {
+    "id": 3,
+    "user_id": 4,
+    "favoritable_id": 3,
+    "favoritable_type": "Tour"
+  }
+}
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+{
+  "error": "You must be authenticated to favorite a tour."
+}
+```
+
+###<a name="delete-favorite"></a>Deleting an Existing Favorite
+
+#### DELETE `/favorites/:id`
+
+**Query Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+"The favorite was deleted successfully."
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+{
+  "error": "Either the favorite does not exist, or you are not authorized to delete it."
 }
 ```
