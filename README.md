@@ -734,11 +734,11 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 
 ```
 {
-  "error": "You are not authorized to modify this site."
+  "error": "You are not authorized to modify this rating."
 }
 ```
 
-###<a name="delete-tr"></a> Deleting an Exisiting Site
+###<a name="delete-tr"></a> Deleting an Exisiting Rating
 
 #### DELETE `/ratings/:id`
 
