@@ -35,7 +35,7 @@ class ToursController < ApplicationController
 
   def update
     @tour = Tour.find(params[:id])
-    if @tour # && tour.user_id == current_user.id
+    if @tour && @tour.user_id == current_user.id
       @tour.update(tour_params)
       render "update.json.jbuilder", status: :accepted
         # status 202

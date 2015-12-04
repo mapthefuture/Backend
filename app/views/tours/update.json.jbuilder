@@ -8,4 +8,5 @@ json.tour do
   json.start_lon @tour.start_lon
   json.category @tour.category
   json.description @tour.description
+  json.average_rating @tour.ratings.average(:score)
 end
