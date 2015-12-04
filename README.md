@@ -85,7 +85,6 @@ If the user could not be created, you should receive status code 422 and ...
 ```
 {
   "error": "Email has already been taken or is invalid."
-  ]
 }
 ```
 
@@ -122,7 +121,7 @@ If the request was not successful, you should receive status code 401 and ...
 
 ```
 {
-"error": "Invalid email or password."
+  "error": "Invalid email or password."
 }
 ```
 
@@ -169,7 +168,7 @@ If the request was not successful, you should receive status code 401 and ...
 
 ```
 {
-"error": "You are not authorized to update this user's information."
+  "error": "You are not authorized to update this user's information."
 }
 ```
 
@@ -389,7 +388,9 @@ If the request was successful, you should receive the status code 202 and ...
 If the request was unsuccessful, you should receive the status code 401 and ...
 
 ```
-"error": "You are not authorized to delete this tour."
+{
+  "error": "You are not authorized to delete this tour."
+}
 ```
 
 ##<a name="site-endpoints"></a> Sites
@@ -522,7 +523,7 @@ If the request failed, you should receive the status code 401 and ...
 
 ```
 {
-  error: "You are not authorized to add a site to this tour."
+  "error": "You are not authorized to add a site to this tour."
 }
 ```
 
@@ -574,7 +575,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 
 ```
 {
-  error: "You are not authorized to modify this site."
+  "error": "You are not authorized to modify this site."
 }
 ```
 
@@ -698,7 +699,7 @@ If the request failed, you should receive the status code 400 and ...
 
 ```
 {
-  error: "You must enter a valid rating (1 - 5)"
+  "error": "You must enter a valid rating (1 - 5)"
 }
 ```
 
@@ -733,7 +734,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 
 ```
 {
-  error: "You are not authorized to modify this site."
+  "error": "You are not authorized to modify this site."
 }
 ```
 
@@ -756,6 +757,8 @@ If the request was successful, you should receive the status code 202 and ...
 If the request was unsuccessful, you should receive the status code 401 and ...
 
 ```
-"error": "You are not authorized to delete this rating."
+{
+  "error": "You are not authorized to delete this rating."
+}
 ```
 
