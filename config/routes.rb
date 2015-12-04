@@ -64,6 +64,14 @@ Rails.application.routes.draw do
   get "users/:id/site_ratings", to: "users#site_ratings"
   get "users/:id/tour_ratings", to: "users#tour_ratings"
   get "users/:id/tour_reviews", to: "users#tour_reviews"
+  get "users/:id/favorite_tours", to: "users#favorite_tours"
+
+  ## Review Routes
+  get "tours/:id/reviews", to: "reviews#index"
+  post "tours/:id/reviews", to: "reviews#create"
+  get "reviews/:id", to: "reviews#show"
+  patch "reviews/:id", to: "reviews#update"
+  delete "reviews/:id", to: "reviews#destroy"
 
   # Example resource route with sub-resources:
   #   resources :products do
