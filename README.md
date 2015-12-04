@@ -50,15 +50,15 @@ Authentication is required for all create, update, and destroy endpoints.
   * [Updating an Existing Review](#update-review)
   * [Deleting an Existing Review](#delete-review)
 
-* [Users](user-endpoints)
+* [Users](#user-endpoints)
   * [Displaying a User's Tour Ratings](#tr-user)
   * [Displaying a User's Site Ratings](#sr-user)
   * [Displaing a User's Tour Reviews](#reviews-user)
   * [Displaying a User's Favorite Tours](#favorites-user)
 
 * [Favorites](#favorite-endpoints)
-  *[Creating a Favorite](#create-favorite)
-  *[Deleting a Favorite](#destroy-favorite)
+  * [Creating a Favorite](#create-favorite)
+  * [Deleting a Favorite](#destroy-favorite)
 
 ##<a name="registration-endpoints"></a>Registration
 
