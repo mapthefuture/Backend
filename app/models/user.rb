@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :tours, dependent: :destroy
   has_many :ratings
   has_many :reviews
+  has_many :favorites, dependent: :destroy
 
   has_attached_file :avatar
   validates_attachment_file_name :avatar, matches: [/png\Z/, /jpg\Z/, /jpeg\Z/]
@@ -27,5 +28,9 @@ class User < ActiveRecord::Base
       token = SecureRandom.hex
     end
     token
+  end
+
+  def favorite_tours
+    favorites = Favorite.where(favoritable_type: "Tour", user_id: self.id)
   end
 end
