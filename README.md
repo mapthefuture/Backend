@@ -946,12 +946,6 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-* [Users](user-endpoints)
-  * [Displaying a User's Tour Ratings](#tr-user)
-  * [Displaying a User's Site Ratings](#sr-user)
-  * [Displaing a User's Tour Reviews](#reviews-user)
-  * [Displaying a User's Favorite Tours](#favorites-user)
-
 ##<a name="user-endpoints"></a> Users
 
 ###<a name="tr-user"></a> Displaying an User's Tour Ratings
