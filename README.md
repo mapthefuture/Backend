@@ -10,13 +10,13 @@ Append endpoints to base uri.
 
 **Authentication Notes**:
 
-To make an authenticated request in any case other than registering
-or deleting an account, you must supply an `Access-Token` header with
-a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
+To make an authenticated request, you must supply an `Access-Token` header 
+with a valid access token. Otherwise, you'll receive a 401 Unauthorized error. 
+Authentication is required for all create, update, and destroy endpoints.
 
 ### Table of Contents
 
-* [Users](#user-endpoints)
+* [Registration](#registration-endpoints)
   * [Creating a User](#create-user)
   * [Viewing a Single User](#show-user)
   * [Updating a User](#update-user)
@@ -27,23 +27,40 @@ a valid access token. Otherwise, you'll receive a 401 Unauthorized error.
   * [Displaying a Single Tour](#show-tour)
   * [Creating a New Tour](#create-tour)
   * [Updating an Existing Tour](#update-tour)
-  * [Deleting an Exisiting Tour](#delete-tour)
+  * [Deleting an Existing Tour](#delete-tour)
 
 * [Sites](#site-endpoints)
   * [Displaying an Index of Sites](#index-sites)
   * [Displaying a Single Site](#show-site)
   * [Creating a New Site](#create-site)
   * [Updating an Existing Site](#update-site)
-  * [Deleting an Exisiting Site](#delete-site)
+  * [Deleting an Existing Site](#delete-site)
 
-* [Tour Ratings](#tr-endpoints)
+* [Tour/Site Ratings](#tr-endpoints)
   * [Displaying an Index of Tour Ratings](#index-tr)
   * [Displaying a Single Rating](#show-tr)
   * [Creating a New Rating](#create-tr)
   * [Updating an Existing Rating](#update-tr)
-  * [Deleting an Exisiting Site](#delete-tr)
+  * [Deleting an Existing Site](#delete-tr)
 
-##<a name="user-endpoints"></a> Users
+* [Reviews](#review-endpoints)
+  * [Displaying an Index of Reviews](#index-reviews)
+  * [Displaying a Single Review](#show-review)
+  * [Creating a New Review](#create-review)
+  * [Updating an Existing Review](#update-review)
+  * [Deleting an Existing Review](#delete-review)
+
+* [Users](user-endpoints)
+  * [Displaying a User's Tour Ratings](#tr-user)
+  * [Displaying a User's Site Ratings](#sr-user)
+  * [Displaing a User's Tour Reviews](#reviews-user)
+  * [Displaying a User's Favorite Tours](#favorites-user)
+
+* [Favorites](#favorite-endpoints)
+  *[Creating a Favorite](#create-favorite)
+  *[Deleting a Favorite](#destroy-favorite)
+
+##<a name="registration-endpoints"></a> Registration
 
 ###<a name="create-user"></a> Creating a User
 
@@ -369,7 +386,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="delete-tour"></a> Deleting an Exisiting Tour
+###<a name="delete-tour"></a> Deleting an Existing Tour
 
 #### DELETE `/tours/:id`
 
@@ -579,7 +596,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="delete-site"></a> Deleting an Exisiting Site
+###<a name="delete-site"></a> Deleting an Existing Site
 
 #### DELETE `/sites/:id`
 
@@ -601,11 +618,12 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 "error": "You are not authorized to delete this site."
 ```
 
-##<a name="tr-endpoints"></a> Tour Ratings
+##<a name="tr-endpoints"></a> Ratings
 
-###<a name="index-tr"></a> Displaying an Index of Tour Ratings
+###<a name="index-tr"></a> Displaying an Index of Ratings
 
-#### GET `/tours/:id/ratings`
+#### GET `/tours/:id/ratings` (tour ratings)
+#### GET `/sites/:id/ratings` (site ratings)
 
 **Params**:
 
@@ -634,11 +652,11 @@ If the request failed, you should receive the status code 404 and ...
 
 ```
 {
-  "error": "Either the tour does not exist, or it has no ratings to display."
+  "error": "Either the tour/site does not exist, or it has no ratings to display."
 }
 ```
 
-###<a name="show-tr"></a> Displaying a Single Tour Rating
+###<a name="show-tr"></a> Displaying a Single Rating
 
 #### GET `/ratings/:id`
 
@@ -656,7 +674,7 @@ If the request was successful, you should receive the status code 200 and ...
       "id": 7,
       "score": 4,
       "rateable_id": 3,
-      "rateable_type": "Tour",
+      "rateable_type": "Site",
 }
 ```
 
@@ -668,9 +686,10 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="create-tr"></a> Creating a New Tour Rating
+###<a name="create-tr"></a> Creating a New Rating
 
-#### POST `/tours/:id/ratings`
+#### POST `/tours/:id/ratings` (tours)
+#### POST `/sites/:id/ratings` (sites)
 
 **Query Params**:
 
@@ -703,7 +722,7 @@ If the request failed, you should receive the status code 400 and ...
 }
 ```
 
-###<a name="update-tr"></a> Updating an Existing Tour Rating
+###<a name="update-tr"></a> Updating an Existing Rating
 
 #### PATCH `/ratings/:id`
 
@@ -738,7 +757,7 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
-###<a name="delete-tr"></a> Deleting an Exisiting Tour Rating
+###<a name="delete-tr"></a> Deleting an Existing Rating
 
 #### DELETE `/ratings/:id`
 
@@ -762,3 +781,309 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
+##<a name="review-endpoints"></a> Reviews
+
+###<a name="index-reviews"></a> Displaying an Index of Reviews
+
+#### GET `/tours/:id/reviews`
+
+**Params**:
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "reviews": [
+    "review": {
+      "id": 3,
+      "tagline": "Great tour!",
+      "body": "Lots of beautiful dog parks.",
+      "tour_id": 7,
+  },
+
+    ...
+  ]
+},
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "Either the tour does not exist, or it has no reviews to display."
+}
+```
+
+###<a name="show-review"></a> Displaying a Single Review
+
+#### GET `/reviews/:id`
+
+**Params**:
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "review": {
+    "id": 3,
+    "tagline": "Great tour!",
+    "body": "Lots of beautiful dog parks.",
+    "tour_id": 7,
+}
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "Could not find object: Couldn't find Review with 'id'=#{id}"
+}
+```
+
+###<a name="create-review"></a> Creating a New Rating
+
+#### POST `/tours/:id/reviews`
+
+**Query Params**:
+
+`id`: Integer
+
+**Post Params**:
+
+`tagline`: String
+
+`body`: Text
+
+**Response**
+
+If the request was successful, you should receive the status code 201 and ...
+
+```
+{
+  "review": {
+    "id": 3,
+    "tagline": "Great tour!",
+    "body": "Lots of beautiful dog parks.",
+    "tour_id": 7,
+  }
+}
+```
+
+If the request failed, you should receive the status code 401 and ...
+
+```
+{
+  "error": "You must be authenticated to create a review."
+}
+```
+
+###<a name="update-review"></a> Updating an Existing Review
+
+#### PATCH `/reviews/:id`
+
+**Query Params**:
+
+`id`: Integer
+
+**Post Params**:
+
+`tagline`: String
+
+`body`: Text
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+{
+  "review": {
+    "id": 3,
+    "tagline": "Great tour!",
+    "body": "Lots of beautiful dog parks.",
+    "tour_id": 7,
+  }
+}
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+{
+  "error": "You are not authorized to modify this review."
+}
+```
+
+###<a name="delete-review"></a> Deleting an Existing Review
+
+#### DELETE `/reviews/:id`
+
+**Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 202 and ...
+
+```
+"The review has been deleted successfully."
+```
+
+If the request was unsuccessful, you should receive the status code 401 and ...
+
+```
+{
+  "error": "You are not authorized to delete this review."
+}
+```
+
+##<a name="user-endpoints"></a> Users
+
+###<a name="tr-user"></a> Displaying an User's Tour Ratings
+
+#### GET `/users/:id/tour_ratings`
+
+**Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "tour_ratings": [
+    "rating": {
+      "id": 3,
+      "tour_id": 6,
+      "tour_name": "Marvin Gardens",
+      "rating": 5
+  },
+
+    ...
+  ]
+}
+```
+
+If the request was unsuccessful, you should receive the status code 204 and ...
+
+```
+{
+  "error": "The user has no site ratings to display."
+}
+```
+
+###<a name="sr-user"></a> Displaying an User's Site Ratings
+
+#### GET `/users/:id/site_ratings`
+
+**Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "site_ratings": [
+    "rating": {
+      "id": 3,
+      "site_id": 6,
+      "tour_name": "Marvin Gardens",
+      "rating": 5
+  },
+
+    ...
+  ]
+}
+```
+
+If the request was unsuccessful, you should receive the status code 204 and ...
+
+```
+{
+  "error": "The user has no site ratings to display."
+}
+```
+
+###<a name="reviews-user"></a> Displaying an User's Tour Reviews
+
+#### GET `/users/:id/tour_reviews`
+
+**Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "tour_reviews": [
+    "review": {
+      "id": 3,
+      "tagline": "Our favorite tour!",
+      "body": "We take this tour twice a day, every day. Love you, Wanderful!",
+      "tour_id": 6
+  },
+
+    ...
+  ]
+}
+```
+
+If the request was unsuccessful, you should receive the status code 204 and ...
+
+```
+{
+  "error": "The user has no tour reviews to display."
+}
+```
+
+###<a name="favorites-user"></a> Displaying an User's Favorite Tours
+
+#### GET `/users/:id/favorites`
+
+**Params**
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "favorites": [
+    "favorite": {
+      "id": 3,
+      "user_id": 6,
+      "favoritable_id": 2,
+      "favoritable_type": "Tour"
+  },
+
+    ...
+  ]
+}
+```
+
+If the request was unsuccessful, you should receive the status code 204 and ...
+
+```
+{
+  "error": "The user has no favorites to display."
+}
+```
