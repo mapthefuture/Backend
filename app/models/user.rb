@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :tours, dependent: :destroy
   has_many :ratings
+  has_many :reviews
 
   has_attached_file :avatar
   validates_attachment_file_name :avatar, matches: [/png\Z/, /jpg\Z/, /jpeg\Z/]
