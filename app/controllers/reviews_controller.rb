@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
       render "create.json.jbuilder", status: :created
         # status: 201
     else
-      render json: { error: "You must be authorized to create a review." },
+      render json: { error: "You must be authenticated to create a review." },
         status: :unauthorized
           # status: 401
     end
