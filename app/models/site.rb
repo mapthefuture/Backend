@@ -9,11 +9,11 @@ class Site < ActiveRecord::Base
   do_not_validate_attachment_file_type :image
   do_not_validate_attachment_file_type :audio
 
-  geocoded_by :address   # can also be an IP address
-  after_validation :geocode          # auto-fetch coordinates
+  # geocoded_by :address   # can also be an IP address
+  # after_validation :geocode          # auto-fetch coordinates
 
-  reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode  # auto-fetch address
+  # reverse_geocoded_by :latitude, :longitude
+  # after_validation :reverse_geocode  # auto-fetch address
 
   def address
   [self.street, self.city, self.state, self.zip, self.country].compact.join(', ')
