@@ -52,7 +52,7 @@ class ToursController < ApplicationController
 
   def favorited_by
     tour = Tour.find(params[:id])
-    if tour
+    if tour && tour.favorites.first
       favorites = Favorite.where(favoritable_id: tour.id, favoritable_type: "Tour")
       @users = []
       favorites.each do |favorite|
@@ -60,6 +60,10 @@ class ToursController < ApplicationController
       end
       render "favorited_by.json.jbuilder", status: :ok
         # status: 200
+    else
+      render json: { error: "This tour hasn't been favorited by anyone yet." },
+        status: :no_content
+          # status 204
     end
   end
 

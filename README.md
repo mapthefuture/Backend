@@ -28,6 +28,7 @@ Authentication is required for all create, update, and destroy endpoints.
   * [Creating a New Tour](#create-tour)
   * [Updating an Existing Tour](#update-tour)
   * [Deleting an Existing Tour](#delete-tour)
+  * [Getting All The Users Who've Favorited a Specific Tour](#favorited-tour)
 
 * [Sites](#site-endpoints)
   * [Displaying an Index of Sites](#index-sites)
@@ -451,6 +452,40 @@ If the request failed, you should receive the status code 404 and ...
 ```
 {
   "error": "Either the tour does not exist, or it has no sites to display."
+}
+```
+
+###<a name="favorited-tour"></a>Getting All The Users Who've Favorited a Specific Tour
+
+#### GET `/tours/:id/favorited`
+
+**Params**:
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "users": [
+    {
+      "id": 3,
+      "first_name": "Jean",
+      "last_name": "Deaux",
+      "email": "jean@email.com"
+    },
+
+  ...
+  ]
+}
+
+If the requested tour exists but the request failed, you should receive the status code 204 and ...
+
+```
+{
+  "error": "This tour hasn't been favorited by anyone yet."
 }
 ```
 
