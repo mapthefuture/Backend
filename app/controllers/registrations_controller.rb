@@ -4,6 +4,8 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # WelcomeMailer.welcome(@user).deliver_now
+
       render "create.json.jbuilder", status: :created 
         # status: 201
     else
@@ -28,9 +30,17 @@ class RegistrationsController < ApplicationController
   def update
     @user = User.find(params[:id])
     if current_user && @user.id == current_user.id
-      @user.update(user_params)
+      @user.update(first_name: params[:first_name],
+                   last_name: params[:last_name],
+                   email: params[:email],
+                   password: params[:password],
+                   avatar: StringIO.new(Base64.decode64(params[:image])))
+      # if @user.avatar == old_avatar
+      #   render json: { error: "Warning -- avatar was not updated properly." },
+      #     status: :not_modified
+      #       # status: 304
       render "update.json.jbuilder", status: :accepted
-        # status 202
+          # status 202
     else 
       render json: { error: "You are not authorized to update this user." },
         status: :unauthorized
