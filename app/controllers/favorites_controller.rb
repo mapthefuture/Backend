@@ -3,15 +3,17 @@ class FavoritesController < ApplicationController
   
   def create
     @tour = Tour.find(params[:tour_id])
-    @favorite = @tour.favorites.new(user_id: current_user.id)
-      if @favorite.save
-        render "create.json.jbuilder", status: :created
-          # status: 201
-      else
-        render json: { error: "You must be authenticated to favorite a tour." },
-          status: :unauthorized
-            # status: 401
-      end
+    if Favorite.find_by(user_id: current_user.id, 
+                        favoritable_id: @tour.id, 
+                        favoritable_type: "Tour")
+    render json: { error: "You can't favorite a tour twice!" },
+        status: :forbidden
+          # status: 403
+    else
+      @favorite = @tour.favorites.create(user_id: current_user.id)
+      render "create.json.jbuilder", status: :created
+        # status: 201
+    end
   end
   
   def destroy
