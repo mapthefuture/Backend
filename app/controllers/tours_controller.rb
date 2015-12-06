@@ -50,6 +50,19 @@ class ToursController < ApplicationController
     end
   end
 
+  def favorited_by
+    tour = Tour.find(params[:id])
+    if tour
+      favorites = Favorite.where(favoritable_id: tour.id, favoritable_type: "Tour")
+      @users = []
+      favorites.each do |favorite|
+        @users.push(User.find(favorite.user_id))
+      end
+      render "favorited_by.json.jbuilder", status: :ok
+        # status: 200
+    end
+  end
+
   private
 
   def tour_params

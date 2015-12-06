@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   patch "tours/:id", to: "tours#update"
   get "tours/:id", to: "tours#show"
   delete "tours/:id", to: "tours#destroy"
+  get "tours/:id/favorited", to: "tours#favorited_by"
  
   ## Site Routes
   get "tours/:id/sites", to: "sites#index"
@@ -76,6 +77,8 @@ Rails.application.routes.draw do
   ## Favorite Routes
   post "favorites", to: "favorites#create"
   delete "favorites/:id", to: "favorites#destroy"
+
+  mount Resque::Server.new, at: "jobs"
 
   # Example resource route with sub-resources:
   #   resources :products do
