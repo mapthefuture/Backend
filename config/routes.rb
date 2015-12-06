@@ -78,7 +78,7 @@ Rails.application.routes.draw do
   post "favorites", to: "favorites#create"
   delete "favorites/:id", to: "favorites#destroy"
 
-  mount Resque::Server.new, at: "jobs"
+  # mount Resque::Server.new, at: "jobs"
 
   # Example resource route with sub-resources:
   #   resources :products do
