@@ -45,6 +45,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Geocoder for location-based calls
 gem 'geocoder'
 
+# Add resque for background jobs
+# gem 'resque'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -55,6 +58,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'autotest'
+  gem 'autotest-standalone'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -63,6 +71,9 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Bullet provides warnings/notifications when n+1 database queries are being made by your server
+  gem 'bullet'
 end
 
 group :production do
