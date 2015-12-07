@@ -5,7 +5,6 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # WelcomeMailer.welcome(@user).deliver_now
-
       render "create.json.jbuilder", status: :created 
         # status: 201
     else
@@ -30,15 +29,7 @@ class RegistrationsController < ApplicationController
   def update
     @user = User.find(params[:id])
     if current_user && @user.id == current_user.id
-      @user.update(first_name: params[:first_name],
-                   last_name: params[:last_name],
-                   email: params[:email],
-                   password: params[:password],
-                   avatar: StringIO.new(Base64.decode64(params[:image])))
-      # if @user.avatar == old_avatar
-      #   render json: { error: "Warning -- avatar was not updated properly." },
-      #     status: :not_modified
-      #       # status: 304
+      @user.update(user_params)
       render "update.json.jbuilder", status: :accepted
           # status 202
     else 
