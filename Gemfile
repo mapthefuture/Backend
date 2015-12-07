@@ -46,7 +46,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'geocoder'
 
 # Add resque for background jobs
-# gem 'resque'
+gem 'resque'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -60,9 +60,9 @@ group :development, :test do
   gem 'pry'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'autotest'
-  gem 'autotest-standalone'
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :development do
