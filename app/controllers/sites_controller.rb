@@ -30,7 +30,6 @@ class SitesController < ApplicationController
   def create_many
     tour = Tour.find(params[:id])
     if params[:sites]
-      binding.pry
       begin
         ActiveRecord::Base.transaction do
           @sites = []
