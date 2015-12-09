@@ -12,7 +12,7 @@ Append endpoints to base uri.
 
 To make an authenticated request, you must supply an `Access-Token` header 
 with a valid access token. Otherwise, you'll receive a 401 Unauthorized error. 
-Authentication is required for all create, update, and destroy endpoints.
+Authentication is required for all POST, PATCH and DELETE requests.
 
 ### Table of Contents
 
@@ -34,6 +34,7 @@ Authentication is required for all create, update, and destroy endpoints.
   * [Displaying an Index of Sites](#index-sites)
   * [Displaying a Single Site](#show-site)
   * [Creating a New Site](#create-site)
+  * [Creating Multiple Sites at Once](#create-many)
   * [Updating an Existing Site](#update-site)
   * [Deleting an Existing Site](#delete-site)
 
@@ -69,13 +70,13 @@ Authentication is required for all create, update, and destroy endpoints.
 
 **Params**:
 
-`first_name`: String
+`first_name`: String (required)
 
 `last_name`: String
 
-`email`: String, must be unique
+`email`: String, must be unique (required)
 
-`password`: String
+`password`: String (required)
 
 `avatar`: File (acceptable formats: png, jpg/jpeg)
 
@@ -112,9 +113,9 @@ If the user could not be created, you should receive status code 422 and ...
 
 **Params**:
 
-`email`: The user account's email address.
+`email`: The user account's email address (required)
 
-`password`: The user account's password.
+`password`: The user account's password (required)
 
 **Response**: 
 
@@ -196,8 +197,8 @@ If the request was not successful, you should receive status code 401 and ...
 
 **Params**:
 
-`email`: Your user account's email address.
-`password`: Your user account's password.
+`email`: Your user account's email address (required)
+`password`: Your user account's password (required)
 
 **Response**:
 
@@ -293,7 +294,7 @@ If the request failed, you should receive the status code 404 and ...
 
 **Post Params**:
 
-`title`: String
+`title`: String (required)
 
 `distance`: Float (in miles)
 
@@ -345,7 +346,7 @@ If the request failed, you should receive the status code 422 and ...
 
 **Post Params**:
 
-`title`: String
+`title`: String 
 
 `distance`: Float (in miles)
 
@@ -411,6 +412,41 @@ If the request was unsuccessful, you should receive the status code 401 and ...
 }
 ```
 
+###<a name="favorited-tour"></a>Getting All The Users Who've Favorited a Specific Tour
+
+#### GET `/tours/:id/favorited`
+
+**Params**:
+
+`id`: Integer
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "users": [
+    {
+      "id": 3,
+      "first_name": "Jean",
+      "last_name": "Deaux",
+      "email": "jean@email.com"
+    },
+
+  ...
+  ]
+}
+```
+
+If the requested tour exists but the request failed, you should receive the status code 204 and ...
+
+```
+{
+  "error": "This tour hasn't been favorited by anyone yet."
+}
+```
+
 ##<a name="site-endpoints"></a>Sites
 
 ###<a name="index-sites"></a>Displaying an Index of Sites
@@ -455,41 +491,6 @@ If the request failed, you should receive the status code 404 and ...
 }
 ```
 
-###<a name="favorited-tour"></a>Getting All The Users Who've Favorited a Specific Tour
-
-#### GET `/tours/:id/favorited`
-
-**Params**:
-
-`id`: Integer
-
-**Response**
-
-If the request was successful, you should receive the status code 200 and ...
-
-```
-{
-  "users": [
-    {
-      "id": 3,
-      "first_name": "Jean",
-      "last_name": "Deaux",
-      "email": "jean@email.com"
-    },
-
-  ...
-  ]
-}
-```
-
-If the requested tour exists but the request failed, you should receive the status code 204 and ...
-
-```
-{
-  "error": "This tour hasn't been favorited by anyone yet."
-}
-```
-
 ###<a name="show-site"></a>Displaying a Single Site
 
 #### GET `/sites/:id`
@@ -503,20 +504,23 @@ If the requested tour exists but the request failed, you should receive the stat
 If the request was successful, you should receive the status code 200 and ...
 
 ```
-{
-  "site": {
-    "id": 7,
-    "tour_id": 4,
-    "title": "The State Hermitage Museum",
-    "description": "A museum of art and culture in Saint Petersburg, Russia.",
-    "image_file_name": "hermitage_facade.png",
-    "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
-                  hermitage_facade.png",
-    "audio_file_name": "hermitage_tour_notes.m4a",
-    "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
-    "latitude": "59.9410",
-    "longitude": "30.3129"
-  }
+{ 
+  "sites": [
+    "site": {
+      "id": 7,
+      "tour_id": 4,
+      "title": "The State Hermitage Museum",
+      "description": "A museum of art and culture in Saint Petersburg, Russia.",
+      "image_file_name": "hermitage_facade.png",
+      "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                    hermitage_facade.png",
+      "audio_file_name": "hermitage_tour_notes.m4a",
+      "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
+      "latitude": "59.9410",
+      "longitude": "30.3129"
+  },
+  ...
+  ]
 }
 ```
 
@@ -538,7 +542,7 @@ If the request failed, you should receive the status code 404 and ...
 
 **Post Params**:
 
-`title`: String
+`title`: String (required)
 
 `description`: Text
 
@@ -546,9 +550,9 @@ If the request failed, you should receive the status code 404 and ...
 
 `audio`: File (acceptable formats: mp3, m4a)
 
-`latitude`: Decimal (precision: 10, scope: 8)
+`latitude`: Decimal (precision: 10, scope: 8) (required)
 
-`longitude`: Decimal (precision: 10, scope: 8)
+`longitude`: Decimal (precision: 10, scope: 8) (required)
 
 **Response**
 
@@ -580,6 +584,65 @@ If the request failed, you should receive the status code 401 and ...
 }
 ```
 
+###<a name="create-many"></a>Creating Multiple Sites at Once
+
+#### POST `/tours/:id/many_sites`
+
+**Query Params**:
+
+`id`: Integer
+
+**Post Params**:
+
+#####*Important* 
+
+`sites` is the only post parameter, but therein you must include an array that includes the following key => value pairs:
+
+`title`: String (required)
+
+`description`: Text
+
+`image`: File (acceptable formats: png, jpg/jpeg)
+
+`audio`: File (acceptable formats: mp3, m4a)
+
+`latitude`: Decimal (precision: 10, scope: 8) (required)
+
+`longitude`: Decimal (precision: 10, scope: 8) (required)
+
+**Response**
+
+If the request was successful, you should receive the status code 201 and ...
+
+```
+{ 
+  "sites": [
+    "site": {
+      "id": 7,
+      "tour_id": 4,
+      "title": "The State Hermitage Museum",
+      "description": "A museum of art and culture in Saint Petersburg, Russia.",
+      "image_file_name": "hermitage_facade.png",
+      "image_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/
+                    hermitage_facade.png",
+      "audio_file_name": "hermitage_tour_notes.m4a",
+      "audio_url": "tours.s3.amazonaws.com/sites/images/000/000/021/original/tour_notes.mp3",
+      "latitude": "59.9410",
+      "longitude": "30.3129"
+  },
+  ...
+  ]
+}
+```
+
+If the request failed, you should receive the status code 401 and ...
+
+```
+{
+  "error": ActiveRecord Exception (varies)
+}
+```
+
 ###<a name="update-site"></a>Updating an Existing Site
 
 #### PATCH `/sites/:id`
@@ -590,7 +653,7 @@ If the request failed, you should receive the status code 401 and ...
 
 **Post Params**:
 
-`title`: String
+`title`: String 
 
 `description`: Text
 
@@ -733,7 +796,7 @@ If the request failed, you should receive the status code 404 and ...
 
 **Post Params**:
 
-`score`: Integer (1 <= score <= 5)
+`score`: Integer (1 <= score <= 5) (required)
 
 **Response**
 
@@ -768,7 +831,7 @@ If the request failed, you should receive the status code 400 and ...
 
 **Post Params**:
 
-`score`: Integer (1 <= score <= 5)
+`score`: Integer (1 <= score <= 5) (required)
 
 **Response**
 
@@ -896,7 +959,7 @@ If the request failed, you should receive the status code 404 and ...
 
 `tagline`: String
 
-`body`: Text
+`body`: Text (required)
 
 **Response**
 
@@ -1132,7 +1195,7 @@ If the request was unsuccessful, you should receive the status code 204 and ...
 
 **Post Params**
 
-`tour_id`: Integer (Note: this param must be sent as a post param)
+`tour_id`: Integer (Note: this param must be sent as a post param) (required)
 
 **Response**
 
