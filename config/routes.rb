@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   ## Site Routes
   get "tours/:id/sites", to: "sites#index"
   post "tours/:id/sites", to: "sites#create"
+  post "tours/:id/many_sites", to: "sites#create_many"
   patch "sites/:id", to: "sites#update"
   get "sites/:id", to: "sites#show"
   delete "sites/:id", to: "sites#destroy"
