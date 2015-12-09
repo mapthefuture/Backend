@@ -4,5 +4,6 @@ FactoryGirl.define do
     last_name         "Doe"
     email             "name@email.com"
     avatar_file_name  "profile_picture.png"
+    password          "password"
   end
 end
