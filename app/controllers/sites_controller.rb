@@ -27,6 +27,31 @@ class SitesController < ApplicationController
     end
   end
 
+  def create_many
+    tour = Tour.find(params[:id])
+    if params[:sites]
+      binding.pry
+      begin
+        ActiveRecord::Base.transaction do
+          @sites = []
+          params[:sites].each do |site|
+            site = tour.sites.create!(title: site[:title], description: site[:description], image: site[:image],
+                                      audio: site[:audio], latitude: site[:latitude], longitude: site[:longitude],
+                                      street: site[:street], city: site[:city], state: site[:state], zip: site[:zip],
+                                      country: site[:country])
+            @sites.push(site)
+          end
+        end
+      rescue Exception => e 
+        @errors = e.message + "No sites were created."
+      end
+      render "create_many.json.jbuilder"
+    else
+      render json: { error: "Please provide the appropriate parameters." }, status: :not_acceptable
+        # status: 406
+    end
+  end
+
   def update
     self.find_tour_by_site
     if @tour.user_id == current_user.id
@@ -73,6 +98,6 @@ class SitesController < ApplicationController
   private
 
   def site_params
-    params.permit(:title, :description, :image, :audio, :latitude, :longitude)
+    params.permit(:title, :description, :image, :audio, :latitude, :longitude, :street, :city, :state, :zip, :country)
   end  
 end
