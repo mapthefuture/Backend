@@ -11,6 +11,15 @@ FactoryGirl.define do
     state             "Georgia"
     zip               30315 
     country           "USA"
-    tour_id           4
+    tour
+
+    factory :site_with_site_ratings do
+      transient do
+        site_rating_count 5
+      end
+      after(:create) do |site, evaluator|
+        create_list(:site_rating, evaluator.site_rating_count, site: site)
+      end
+    end
   end
 end
