@@ -18,12 +18,12 @@ FactoryGirl.define do
       end
     end
 
-    factory :tour_with_tour_ratings do
+    factory :tour_with_ratings do
       transient do
         tour_rating_count 5
       end
       after(:create) do |tour, evaluator|
-        create_list(:tour_rating, evaluator.tour_rating_count, tour: tour)
+        create_list(:rating, evaluator.tour_rating_count, tour: tour)
       end
     end
 
@@ -42,6 +42,12 @@ FactoryGirl.define do
       end
       after(:create) do |tour, evaluator|
         create_list(:favorite, evaluator.favorite_count, tour: tour)
+      end
+    end
+
+    factory :tour_rating do
+      after(:create) do |tour|
+        create(:rating, rateable: tour)
       end
     end
   end

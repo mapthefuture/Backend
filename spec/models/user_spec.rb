@@ -17,6 +17,10 @@ subject(:user) { FactoryGirl.create(:user) }
   end
 
   context 'associations' do
+    it { is_expected.to have_many(:tours) }
+    it { is_expected.to have_many(:favorites) }
+    it { is_expected.to have_many(:ratings) }
+    it { is_expected.to have_many(:reviews) }
   end
 
   context 'validations' do
