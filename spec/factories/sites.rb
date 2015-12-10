@@ -13,7 +13,11 @@ FactoryGirl.define do
     country           "USA"
     tour
 
-    factory :site_with_site_ratings do
+    after(:create) do |site|
+        create(:rating, rateable: site)
+      end
+      
+    factory :site_with_ratings do
       transient do
         site_rating_count 5
       end
