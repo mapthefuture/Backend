@@ -11,23 +11,9 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_access_token!
 
-  validates_presence_of :first_name, :last_name
-  validates_uniqueness_of :email
+  validates_presence_of :first_name, :email, :access_token
+  validates_uniqueness_of :email, :access_token
   validates_format_of :email, with: /.+@.+\..+/
-  validates :access_token, presence: true, uniqueness: true
-
-  attr_accessor :image_data,:image
-  before_save :decode_image_data
-
-  def decode_image_data
-    if self.image_data.present?
-      data = StringIO.new(Base64.decode64(self.image_data))
-      data.class.class_eval {attr_accessor :original_filename, :content_type}
-      data.original_filename = self.id.to_s + ".png"
-      data.content_type = "image/png"
-      self.avatar = data
-    end
-  end
 
   def ensure_access_token!
     if self.access_token.blank?
