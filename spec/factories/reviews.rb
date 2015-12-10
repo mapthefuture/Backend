@@ -1,8 +1,17 @@
 FactoryGirl.define do
-  factory :review do
+  factory :site_review do
+    association :reviewable, factory: :site
     tagline    "Great Tour"
     body       "Our favorite tour of the city."
-    user_id    12
-    tour_id    13
+    site
+    user
+  end
+
+  factory :tour_review do
+    association :reviewable, factory: :tour
+    tagline    "Great Tour"
+    body       "Our favorite tour of the city."
+    tour
+    user
   end
 end

@@ -1,8 +1,15 @@
 FactoryGirl.define do
-  factory :rating do
-    rateable_id     3
-    rateable_type   "Tour"
-    score           5
-    user_id         1    
+  factory :site_rating do
+    association :rateable, factory: :site
+    site
+    score     5
+    user
+  end
+
+  factory :tour_rating do
+    association :rateable, factory: :tour
+    tour
+    score     5
+    user
   end
 end
