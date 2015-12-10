@@ -6,6 +6,8 @@ class Site < ActiveRecord::Base
   has_attached_file :audio
 
   validates_attachment_file_name :image, matches: [/png\Z/, /jpe?g\Z/]
+  validates_attachment_file_name :audio, matches: [/mp3\Z/, /m4a\Z/]
+
   # validates_attachment_content_type :image, content_type: /\Aimage/
   # validates_attachment_content_type :audio,
   # :content_type => [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 
