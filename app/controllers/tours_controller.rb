@@ -1,5 +1,5 @@
 class ToursController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, except: [:show, :index]
 
   def index
     @tours = Tour.includes(:ratings).all
