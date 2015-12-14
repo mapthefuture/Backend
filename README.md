@@ -198,6 +198,7 @@ If the request was not successful, you should receive status code 401 and ...
 **Params**:
 
 `email`: Your user account's email address (required)
+
 `password`: Your user account's password (required)
 
 **Response**:
@@ -218,7 +219,19 @@ If the request was unsuccessful, you should receive status code 401 and ...
 
 ###<a name="index-tours"></a>Displaying an Index of Tours
 
-#### GET `/tours`
+#### POST `/tours`
+
+This endpoint returns tours within a certain radius based on three params:
+
+**Params**:
+
+`latitude`: The latitude of the center point of your search area
+
+`longitude`: The longitude of the center point of your search area
+
+`radius`: The radius of your search area (in kilometers)
+
+Note: Tours are returned in ascending order based on the distance of their starting lat and lon from the origin point.
 
 **Response**
 
