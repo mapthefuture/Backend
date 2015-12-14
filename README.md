@@ -24,6 +24,7 @@ Authentication is required for all POST, PATCH and DELETE requests.
 
 * [Tours](#tour-endpoints)
   * [Displaying an Index of Tours](#index-tours)
+  * [Displaying an Index of Nearby Tours](#nearby-tours)
   * [Displaying a Single Tour](#show-tour)
   * [Creating a New Tour](#create-tour)
   * [Updating an Existing Tour](#update-tour)
@@ -217,11 +218,47 @@ If the request was unsuccessful, you should receive status code 401 and ...
 
 ##<a name="tour-endpoints"></a>Tours
 
-###<a name="index-tours"></a>Displaying an Index of Tours
+###<a name="index-tours"></a>Displaying an Index of All Tours
+
+#### GET `/tours`
+
+**Response**
+
+If the request was successful, you should receive the status code 200 and ...
+
+```
+{
+  "tours": [
+    "tour": {
+      "id": 7,
+      "user_id": 4,
+      "title": "Charleston Gardens",
+      "distance": 3,
+      "duration": 2,
+      "start_lat": "33.8428",
+      "start_lon": "84.3857",
+      "category": "Food",
+      "description": "Lots of topiaries."
+  },
+
+    ...
+  ]
+}
+```
+
+If the request failed, you should receive the status code 404 and ...
+
+```
+{
+  "error": "There are no tours to display."
+}
+```
+
+###<a name="nearby-tours"></a>Displaying an Index of Tours Within an Area
 
 #### POST `/tours`
 
-This endpoint returns tours within a certain radius based on three params:
+This endpoint returns tours within a certain area based on three params:
 
 **Params**:
 
@@ -229,7 +266,7 @@ This endpoint returns tours within a certain radius based on three params:
 
 `longitude`: The longitude of the center point of your search area
 
-`radius`: The radius of your search area (in kilometers)
+`radius`: The radius of your search area (in miles)
 
 Note: Tours are returned in ascending order based on the distance of their starting lat and lon from the origin point.
 
