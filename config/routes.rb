@@ -33,7 +33,8 @@ Rails.application.routes.draw do
   delete "user/destroy", to: "registrations#destroy"
 
   ## Tour Routes
-  post "tours/nearby", to: "tours#index"
+  get "tours", to: "tours#index"
+  post "tours/nearby", to: "tours#nearby"
   post "tours", to: "tours#create"
   patch "tours/:id", to: "tours#update"
   get "tours/:id", to: "tours#show"

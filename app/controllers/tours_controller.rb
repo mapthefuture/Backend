@@ -2,6 +2,18 @@ class ToursController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
+    @tours = Tour.includes(:ratings).all
+    if @tours.first
+      render "index.json.jbuilder", status: :ok 
+        # status 200
+    else
+      render json: { error: "There are no tours to display." },
+        status: :not_found
+          # status 404
+    end
+  end
+
+  def nearby
     @tours = Tour.includes(:ratings).near([params[:latitude].to_f, params[:longitude].to_f], params[:radius].to_f) # radius in kms
     if @tours.first
       render "index.json.jbuilder", status: :ok 
