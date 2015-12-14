@@ -16,7 +16,7 @@ class TourRatingsController < ApplicationController
 
   def create
     tour = Tour.find(params[:id])
-    if current_user.ratings.where(rateable_id: tour.id, rateable_type: "Tour")
+    if current_user.ratings.exists?(rateable_id: tour.id, rateable_type: "Tour")
       render json: { error: "User cannot rate a tour more than once." },
         status: :forbidden
           # status: 403
