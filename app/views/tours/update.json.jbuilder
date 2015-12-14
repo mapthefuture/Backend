@@ -2,7 +2,7 @@ json.tour do
   json.id @tour.id
   json.user_id @tour.user_id
   json.title @tour.title
-  json.distance @tour.distance
+  json.length @tour.length
   json.duration @tour.duration
   json.start_lat @tour.start_lat
   json.start_lon @tour.start_lon
