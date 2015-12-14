@@ -16,7 +16,7 @@ class SiteRatingsController < ApplicationController
 
   def create
     site = Site.find(params[:id])
-    if current_user.ratings.where(rateable_id: site.id, rateable_type: "Site")
+    if current_user.ratings.exists?(rateable_id: site.id, rateable_type: "Site")
       render json: { error: "User cannot rate a site more than once." },
         status: :forbidden
           # status: 403
