@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204182535) do
+ActiveRecord::Schema.define(version: 20151214181522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(version: 20151204182535) do
     t.datetime "updated_at",    null: false
     t.integer  "rateable_id"
     t.string   "rateable_type"
-    t.integer  "score"
+    t.integer  "score",         null: false
     t.integer  "user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string   "tagline"
+    t.string   "tagline",    null: false
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20151204182535) do
   end
 
   create_table "sites", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",                                    null: false
     t.integer  "tour_id"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
@@ -62,26 +62,26 @@ ActiveRecord::Schema.define(version: 20151204182535) do
   end
 
   create_table "tours", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",                                null: false
     t.integer  "user_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.float    "distance"
+    t.float    "length"
     t.integer  "duration"
     t.decimal  "start_lat",   precision: 10, scale: 8
     t.decimal  "start_lon",   precision: 10, scale: 8
-    t.string   "category"
+    t.string   "category",                             null: false
     t.text     "description"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
+    t.string   "email",            null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "password_digest"
-    t.string   "first_name"
+    t.string   "first_name",       null: false
     t.string   "last_name"
-    t.string   "access_token"
+    t.string   "access_token",     null: false
     t.string   "avatar_file_name"
   end
 

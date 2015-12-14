@@ -4,7 +4,6 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # WelcomeMailer.welcome(@user).deliver_now
       render "create.json.jbuilder", status: :created 
         # status: 201
     else
@@ -28,7 +27,7 @@ class RegistrationsController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if current_user && @user.id == current_user.id
+    if @user.id == current_user.id
       @user.update(user_params)
       render "update.json.jbuilder", status: :accepted
           # status 202
