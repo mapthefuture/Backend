@@ -2,7 +2,7 @@ class ToursController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @tours = Tour.includes(:ratings).all
+    @tours = Tour.includes(:ratings).near([params[:latitude].to_f, params[:longitude].to_f], params[:radius].to_f) # radius in kms
     if @tours.first
       render "index.json.jbuilder", status: :ok 
         # status 200
@@ -27,10 +27,8 @@ class ToursController < ApplicationController
 
   def show
     @tour = Tour.find(params[:id])
-    if @tour
-      render "show.json.jbuilder", status: :ok 
+    render "show.json.jbuilder", status: :ok 
         # status 200
-    end
   end
 
   def update
@@ -39,6 +37,10 @@ class ToursController < ApplicationController
       @tour.update(tour_params)
       render "update.json.jbuilder", status: :accepted
         # status 202
+    else 
+      render json: { error: "You are not authorized to update this tour." },
+        status: :unauthorized
+          # status 401
     end
   end
 
