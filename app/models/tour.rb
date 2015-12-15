@@ -14,6 +14,6 @@ class Tour < ActiveRecord::Base
   after_validation :reverse_geocode  # auto-fetch address
 
   def address
-    [self.street, self.city, self.state, self.country].compact.join(', ')
+    [street, city, state, country].compact.join(', ')
   end
 end
