@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
 
   def index
     tour = Tour.find(params[:id])
-    if tour && tour.reviews.first
+    if tour.reviews.first
       @reviews = tour.reviews
       render "index.json.jbuilder", status: :ok
         # status: 200

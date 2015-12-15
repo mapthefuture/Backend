@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def tour_reviews
     user = User.find(params[:id])
     @reviews = user.reviews
-    if @ratings && @ratings.first
+    if @reviews.first
       render "tour_reviews.json.jbuilder", status: :ok
         # status: 200
     else
@@ -40,7 +40,6 @@ class UsersController < ApplicationController
 
   def favorites
     user = User.find(params[:id])
-    tours = user.tours
     @favorites = user.favorite_tours
     if @favorites.first
       render "favorites.json.jbuilder", status: :ok

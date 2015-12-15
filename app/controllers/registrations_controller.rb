@@ -42,7 +42,8 @@ class RegistrationsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       @user.destroy
-      render plain: "The user has been deleted successfully.", status: :accepted # status 202
+      render plain: "The user has been deleted successfully.", status: :accepted 
+        # status 202
     else
       render json: { error: "Invalid email or password." },
         status: :unauthorized
