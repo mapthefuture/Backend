@@ -45,7 +45,7 @@ class ToursController < ApplicationController
 
   def update
     @tour = Tour.find(params[:id])
-    if @tour && @tour.user_id == current_user.id
+    if @tour.user_id == current_user.id
       @tour.update(tour_params)
       render "update.json.jbuilder", status: :accepted
         # status 202
@@ -58,7 +58,7 @@ class ToursController < ApplicationController
 
   def destroy
     tour = Tour.find(params[:id])
-    if tour # && tour.user_id == current_user.id
+    if tour.user_id == current_user.id
       tour.destroy
       render plain: "The tour has been deleted successfully."
     end
@@ -66,7 +66,7 @@ class ToursController < ApplicationController
 
   def favorited_by
     tour = Tour.find(params[:id])
-    if tour && tour.favorites.first
+    if tour.favorites.first
       favorites = Favorite.where(favoritable_id: tour.id, favoritable_type: "Tour")
       @users = []
       favorites.each do |favorite|
@@ -75,16 +75,14 @@ class ToursController < ApplicationController
       render "favorited_by.json.jbuilder", status: :ok
         # status: 200
     else
-      render json: { error: "This tour hasn't been favorited by anyone yet." },
-        status: :no_content
-          # status 204
+      render plain: "This tour hasn't been favorited by anyone yet."
     end
   end
 
   private
 
   def tour_params
-    params.permit(:title, :distance, :duration, :start_lat, :start_lon, 
-                  :category, :description)
+    params.permit(:title, :length, :duration, :start_lat, :start_lon, 
+                  :category, :description, :street, :city, :state, :zip, :country)
   end
 end
