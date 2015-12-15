@@ -7,7 +7,6 @@ RSpec.describe RegistrationsController, type: :controller do
   end
 
     describe 'POST create' do
-
       context 'validate successful requests'do 
         let(:params) { FactoryGirl.attributes_for(:user) }
 
@@ -39,7 +38,6 @@ RSpec.describe RegistrationsController, type: :controller do
     end
 
   describe 'GET show' do
-
     let(:user) { FactoryGirl.create(:user) }
 
     context 'accept valid requests' do
@@ -78,5 +76,29 @@ RSpec.describe RegistrationsController, type: :controller do
     it { expect(@user.email).to eq(params[:email]) }
     it { expect(response).to have_http_status(:accepted) }
     it { expect(response).to render_template('update.json.jbuilder') }
+  end
+
+  describe 'DELETE destroy' do
+    let(:user) { FactoryGirl.create(:user) }
+
+    context 'accept valid requests' do
+
+      before(:each) do
+        delete :destroy, email: user.email, password: user.password
+      end
+      
+      it { expect(User.count).to eq(0) }
+      it { expect(response).to have_http_status(:accepted) }
+    end
+
+    context 'reject invalid requests' do
+      
+      before(:each) do
+        delete :destroy, email: user.email, password: nil
+      end
+
+      it { expect(User.count).to eq(1) }
+      it { expect(response).to have_http_status(:unauthorized) }
+    end
   end
 end
