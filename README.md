@@ -233,7 +233,6 @@ If the request was successful, you should receive the status code 200 and ...
       "id": 7,
       "user_id": 4,
       "title": "Charleston Gardens",
-      "distance": 3,
       "duration": 2,
       "start_lat": "33.8428",
       "start_lon": "84.3857",
@@ -281,7 +280,6 @@ If the request was successful, you should receive the status code 200 and ...
       "id": 7,
       "user_id": 4,
       "title": "Charleston Gardens",
-      "distance": 3,
       "duration": 2,
       "start_lat": "33.8428",
       "start_lon": "84.3857",
@@ -320,7 +318,6 @@ If the request was successful, you should receive the status code 200 and ...
     "id": 7,
     "user_id": 4,
     "title": "Charleston Gardens",
-    "distance": 3,
     "duration": 2,
     "start_lat": "33.8428",
     "start_lon": "84.3857",
@@ -346,8 +343,6 @@ If the request failed, you should receive the status code 404 and ...
 
 `title`: String (required)
 
-`distance`: Float (in miles)
-
 `duration`: Integer (in seconds)
 
 `start_lat`: Decimal (precision: 10, scope: 8)
@@ -368,7 +363,6 @@ If the request was successful, you should receive the status code 201 and ...
     "id": 7,
     "user_id": 4,
     "title": "Charleston Gardens",
-    "distance": 3,
     "duration": 2,
     "start_lat": "33.8428",
     "start_lon": "84.3857",
@@ -398,8 +392,6 @@ If the request failed, you should receive the status code 422 and ...
 
 `title`: String 
 
-`distance`: Float (in miles)
-
 `duration`: Integer (in seconds)
 
 `start_lat`: Decimal (precision: 10, scope: 8)
@@ -420,7 +412,6 @@ If the request was successful, you should receive the status code 202 and ...
     "id": 7,
     "user_id": 4,
     "title": "Charleston Gardens",
-    "distance": 3,
     "duration": 2,
     "start_lat": "33.8428",
     "start_lon": "84.3857",
