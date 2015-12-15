@@ -2,6 +2,8 @@
 
 A crowdsourced touring app that offers new, fresh perspectives on the city to locals and travelers alike!
 
+[![Build Status](https://travis-ci.org/mapthefuture/backend.svg?branch=master)](http://travis-ci.org/mapthefuture/backend)
+
 ## API
 
 **Production Base URI**: https://fathomless-savannah-6575.herokuapp.com
