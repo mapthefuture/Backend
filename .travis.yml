@@ -5,5 +5,3 @@ env:
   - DB=mapthefuture-test
 script:
   - RAILS_ENV=test bundle exec rake db:migrate test
-before_script:
-  - psql -c 'create database mapthefuture-test' -U postgres 
