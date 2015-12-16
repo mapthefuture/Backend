@@ -26,7 +26,7 @@ RSpec.describe Tour, type: :model do
     it { is_expected.to have_many(:favorites) }
   end
 
-  context 'validations'
+  context 'validations' do
     it 'rejects invalid attachment file types' do
       expect(build(:site, image_file_name: 'image.mp3')).to_not be_valid
       expect(build(:site, image_file_name: 'audio.jpg')).to_not be_valid
