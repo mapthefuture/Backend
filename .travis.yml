@@ -2,8 +2,8 @@ language: ruby
 rvm:
   - 2.2.2
 env:
-  - DB=mapthefuture-test
+  - DB=mapthefuture_test
 script:
-  - RAILS_ENV=test bundle exec rspec spec
+  - RAILS_ENV=test bundle exec rake db:migrate rspec spec
 before_script:
-  - psql -c 'create database mapthefuture-test' -U postgres
+  - psql -c 'create database mapthefuture_test' -U postgres
