@@ -4,6 +4,6 @@ rvm:
 env:
   - DB=mapthefuture_test
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate rspec spec
+  - RAILS_ENV=test bundle exec rake db:migrate spec
 before_script:
   - psql -c 'create database mapthefuture_test' -U postgres
