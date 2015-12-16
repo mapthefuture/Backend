@@ -6,8 +6,8 @@ RSpec.describe Review, type: :model do
   end
 
   context 'db' do
-    it { is_expected.to have_db_column(:tagline).of_type(:string).with_options(null: false) }
-    it { is_expected.to have_db_column(:body).of_type(:text) }
+    it { is_expected.to have_db_column(:tagline).of_type(:string)
+    it { is_expected.to have_db_column(:body).of_type(:text) }.with_options(null: false) }
     it { is_expected.to have_db_column(:user_id).of_type(:integer) }
     it { is_expected.to have_db_column(:tour_id).of_type(:integer) }
   end
