@@ -2,7 +2,7 @@
 
 A crowdsourced touring app that offers new, fresh perspectives on the city to locals and travelers alike!
 
-[![Build Status](https://travis-ci.org/mapthefuture/backend.svg?branch=master)](http://travis-ci.org/mapthefuture/backend)
+[![Build Status](https://travis-ci.org/mapthefuture/Backend.svg?branch=master)](https://travis-ci.org/mapthefuture/Backend)
 
 ## API
 
