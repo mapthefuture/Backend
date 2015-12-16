@@ -10,11 +10,6 @@ RSpec.describe ToursController, type: :controller do
 
   context 'POST create' do
 
-    # before(:each) do
-    # @user = FactoryGirl.create(:user)
-    # request.env['HTTP_AUTHORIZATION'] = @user.access_token
-    # end
-
     it 'generates a created response when a tour was built successfully' do
       params = FactoryGirl.attributes_for(:tour)
       post :create, params
@@ -33,6 +28,18 @@ RSpec.describe ToursController, type: :controller do
   end
 
   context 'PATCH update' do
+    let(:params) do
+      { :title => 'Johnny', :category => 'new' }
+    end
+
+    before(:each) do
+      @tour = create(:tour)
+      allow(controller).to receive(:current_user).and_return(@user)
+      patch :update, id: @tour.id, tour: params
+      @tour.reload
+    end
+
+    it { expect(@tour.title).to eq(params[:title]) }
   end
 
   context 'DELETE destroy' do

@@ -16,13 +16,6 @@ RSpec.describe RegistrationsController, type: :controller do
 
         it { expect(response).to have_http_status(:created) }
         it { expect(User.count).to eq(1) }
-
-        it 'requires users to have unique email addresses' do
-          expect(User.count).to eq(1)
-          post :create, user: params
-          expect(response).to have_http_status(:unprocessable_entity)
-          expect(User.count).to eq(1)
-        end
       end
 
       context 'reject invalid requests' do
@@ -34,6 +27,12 @@ RSpec.describe RegistrationsController, type: :controller do
 
         it { expect(response).to have_http_status(:unprocessable_entity) }
         it { expect(User.count).to eq(0) }
+        it 'requires users to have unique email addresses' do
+          expect(User.count).to eq(1)
+          post :create, user: params
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(User.count).to eq(1)
+        end
       end
     end
 
