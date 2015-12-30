@@ -14,7 +14,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries    = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -47,4 +48,38 @@ Rails.application.configure do
       bucket: ENV["S3_BUCKET_TEST"]
       }
     }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    # Bullet.growl = true
+    # Bullet.xmpp = { :account  => 'bullets_account@jabber.org',
+    #                 :password => 'bullets_password_for_jabber',
+    #                 :receiver => 'your_account@jabber.org',
+    #                 :show_online_status => true }
+    Bullet.rails_logger = true
+    # Bullet.honeybadger = true
+    # Bullet.bugsnag = true
+    # Bullet.airbrake = true
+    # Bullet.rollbar = true
+    # Bullet.add_footer = true
+    # Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
+    # Bullet.slack = { webhook_url: 'http://some.slack.url', foo: 'bar' }
+
+    # Add some SMTP settings for ActionMailer.
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.mandrillapp.com',
+      port: 587,
+      user_name: 'briandunlap589@gmail.com',
+      password: ENV["MANDRILL_API_KEY"],
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
+
+    config.active_job.queue_adapter = :resque
+end
+
 end
